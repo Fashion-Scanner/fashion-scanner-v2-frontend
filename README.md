@@ -1,0 +1,1 @@
+# fashion-scanner-v2-frontend
