@@ -1,7 +1,14 @@
 import React from "react";
+import RootRouter from "routes";
+import GlobalStyle from "styles/GlobalStyles";
 
 const App: React.FC = () => {
-  return <div className="App">Fashion Scanner v2</div>;
+  return (
+    <>
+      <GlobalStyle />
+      <RootRouter />
+    </>
+  );
 };
 
 export default App;

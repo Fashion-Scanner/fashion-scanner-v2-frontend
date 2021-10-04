@@ -6,6 +6,8 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     overflow: hidden;
+    margin: 0px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   }
 
   * {
@@ -13,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
   }
 `;
 
