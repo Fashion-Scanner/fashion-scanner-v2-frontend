@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
 const Container = styled.footer`
   bottom: 0;
   background-color: #282c30;
-  position: absolute;
+  position: relative;
   width: 100%;
   color: #ffffff;
   padding: 40px 10% 0px;

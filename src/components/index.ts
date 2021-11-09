@@ -1,4 +1,4 @@
-export { Header } from "components/Header";
+export { Header, StyledHeader } from "components/Header";
 export { Footer } from "components/Footer";
 export { MatchCover } from "components/MatchCover";
 export { MatchSystem } from "components/MatchSystem";
@@ -7,3 +7,4 @@ export { BlackButton } from "components/Button";
 export { PhotoCard } from "components/PhotoCard";
 export { InfoCard } from "components/InfoCard";
 export { Badge } from "components/Badge";
+export { ToggleMenu, StyledToggleMenu } from "components/ToggleMenu";
