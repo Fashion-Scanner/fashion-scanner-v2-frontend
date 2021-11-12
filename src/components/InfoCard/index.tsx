@@ -1,0 +1,73 @@
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { useHistory } from "react-router";
+import { BlackButton } from "components";
+
+interface InfoCardProps {
+  isClicked: boolean;
+}
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
+const slideUp = keyframes`
+  from {
+    transform: translateY(50px);
+  }
+
+  to {
+    transform: translateY(0px);
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 100px;
+  span {
+    font-size: 20px;
+  }
+
+  span + span {
+    margin-top: 10px;
+  }
+
+  animation: ${fadeIn} 1s ease-in-out, ${slideUp} 0.5s ease-in-out;
+`;
+
+const StyledButton = styled(BlackButton)`
+  margin: 30px 0;
+`;
+
+export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
+  const history = useHistory();
+
+  if (!isClicked) {
+    return null;
+  }
+
+  const onClick = (): void => {
+    history.push({
+      pathname: "/bts/match",
+    });
+  };
+  return (
+    <Container>
+      <span>당신은 패완얼의 정석 뷔</span>
+      <span>남다른 패션센스를 자랑하지만</span>
+      <span>가끔 얼굴 때문에 그 센스가 묻히는군요</span>
+      <span>뷔의 룩북을 참고해보세요!</span>
+      <StyledButton onClick={onClick}>룩북 바로가기</StyledButton>
+      <p>공유하기</p>
+    </Container>
+  );
+};
