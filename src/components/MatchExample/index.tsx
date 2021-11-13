@@ -1,10 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-
-interface ExampleCardProps {
-  width?: string;
-  hasBorder?: boolean;
-}
+import ExampleCard from "./ExampleCard";
 
 interface CardImageProps {
   width?: string;
@@ -27,20 +23,6 @@ const ExampleBox = styled.div`
   margin: 4rem 0;
 `;
 
-const ExampleCard = styled.div`
-  ${({ width, hasBorder }: ExampleCardProps) => {
-    return css`
-      width: ${width || "26.6"}%;
-      ${hasBorder &&
-      css`
-        border-left: 1px solid black;
-        border-right: 1px solid black;
-      `};
-    `;
-  }}
-  height: 100%;
-`;
-
 const ExampleTitle = styled.div`
   ${(props: { reversed?: boolean }) =>
     props.reversed &&
@@ -52,11 +34,11 @@ const ExampleTitle = styled.div`
   font-weight: bold;
   line-height: 1.2;
   color: gray;
-  font-size: 6rem;
+  font-size: 5rem;
 `;
 
 const CardNumber = styled.div`
-  font-size: 5rem;
+  font-size: 4rem;
 `;
 
 const CardImage = styled.img`
@@ -70,14 +52,14 @@ const CardImage = styled.img`
 `;
 
 const CardInnerText = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.4;
   color: gray;
 `;
 
-export const MatchExample: React.FC = () => {
+export const MatchExample = React.forwardRef<HTMLDivElement>(function MatchExample(props, ref) {
   return (
-    <Container>
+    <Container ref={ref}>
       <ExampleBox>
         <ExampleCard width="17">
           <ExampleTitle reversed>
@@ -88,7 +70,7 @@ export const MatchExample: React.FC = () => {
         </ExampleCard>
         <ExampleCard width="20">
           <CardNumber>01</CardNumber>
-          <CardImage src="/images/Match/ex_good_01.jpg" alt="ex-good-01" />
+          <CardImage width="80" src="/images/Match/ex_good_01.jpg" alt="ex-good-01" />
           <CardInnerText>
             정면을 보고 바르게 선 자세로
             <br />
@@ -158,7 +140,7 @@ export const MatchExample: React.FC = () => {
           </CardInnerText>
           <CardImage height="65" src="/images/Match/ex_bad_03.jpg" alt="ex-bad-03" />
         </ExampleCard>
-        <ExampleCard width="18" style={{ paddingLeft: "3%" }}>
+        <ExampleCard width="19" style={{ paddingLeft: "3%" }}>
           <CardNumber>04</CardNumber>
           <CardImage height="70" src="/images/Match/ex_bad_04.jpg" alt="ex-bad-04" />
           <CardInnerText>
@@ -167,7 +149,7 @@ export const MatchExample: React.FC = () => {
             정확한 결과를 얻기 힘듭니다.
           </CardInnerText>
         </ExampleCard>
-        <ExampleCard width="17" style={{ display: "flex", justifyContent: "end" }}>
+        <ExampleCard width="15" style={{ display: "flex", justifyContent: "end" }}>
           <ExampleTitle>
             BAD
             <br />
@@ -177,4 +159,4 @@ export const MatchExample: React.FC = () => {
       </ExampleBox>
     </Container>
   );
-};
+});

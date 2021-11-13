@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FaChevronDown } from "react-icons/fa";
 
 const CoverContainer = styled.div`
   position: relative;
@@ -46,13 +47,46 @@ const BTSText = styled.div`
   z-index: 7;
 `;
 
-export const MatchCover: React.FC = () => {
+const GoMatching = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 5vh;
+  text-decoration: none;
+  font-size: 3rem;
+  color: black;
+  &:hover {
+    cursor: pointer;
+    color: white;
+  }
+  animation: breath 0.5s infinite alternate;
+
+  @keyframes breath {
+    from {
+      transform: translate(0, 50%) scale(1);
+    }
+
+    to {
+      transform: translate(0, 50%) scale(1.2);
+    }
+  }
+`;
+
+export const MatchCover = ({ matchExampleComponent }: { matchExampleComponent: React.RefObject<HTMLDivElement> }) => {
   return (
     <CoverContainer>
       <CoverImage src="/images/Match/cover_image.jpg" />
       <CoverBackground src="/images/Match/cover_background.jpg" alt="cover-background" />
       <CoverText>WHICH MEMBER ARE YOU?</CoverText>
       <BTSText>bts</BTSText>
+      <GoMatching
+        onClick={() => {
+          matchExampleComponent.current?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        <FaChevronDown />
+      </GoMatching>
     </CoverContainer>
   );
 };
