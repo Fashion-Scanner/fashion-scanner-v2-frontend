@@ -16,7 +16,7 @@ export const ToggleMenu: React.FC<ToggleMenuTypes<HTMLDivElement>> = ({ menu, cl
 };
 
 export const StyledToggleMenu = styled(ToggleMenu)`
-  display: flex;
+  display: inline-flex;
   & > div {
     cursor: pointer;
   }

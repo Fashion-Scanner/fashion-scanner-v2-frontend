@@ -1,33 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "styles/Theme";
 
-interface NavProps {
-  id: number;
-  component: string | React.ReactNode;
-}
-
 interface StyledHeaderPropType {
-  readonly align: "left" | "center";
+  // readonly align: "left" | "center";
+  readonly elevation?: 0 | 1;
   readonly color?: string;
 }
 
 interface HeaderPropType extends StyledHeaderPropType {
-  nav: NavProps[];
+  subNav?: React.ReactNode;
   logo: string;
 }
 
-export const Header: React.FC<HeaderPropType> = ({ align, color, logo, nav }) => {
+export const Header: React.FC<HeaderPropType> = ({ color, logo, subNav, children }) => {
+  const [ev, setEv] = useState<StyledHeaderPropType["elevation"]>(0);
+  useEffect(() => {
+    window.onscroll = () => {
+      window.scrollY >= 80 ? setEv(1) : setEv(0);
+    };
+  }, []);
   return (
-    <StyledHeader align={align} color={color}>
+    <StyledHeader color={color} elevation={ev}>
       <div className="logo">
-        <img src={logo} alt="FASHION_SCANNER" />
+        <NavLink to="/">
+          <img src={logo} alt="FASHION_SCANNER" />
+        </NavLink>
+        {subNav || undefined}
       </div>
-      <ul className="nav">
-        {nav.map((v) => (
-          <li key={v.id}>{v.component}</li>
-        ))}
-      </ul>
+      {children}
     </StyledHeader>
   );
 };
@@ -40,22 +42,22 @@ export const StyledHeader = styled.header<StyledHeaderPropType>`
   width: 100%;
   height: 60px;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   font-family: ${theme.font.roboto};
   background-color: ${(props) => props.color || "#ffffffe0"};
   z-index: 9999;
+  box-shadow: ${(props) => (props.elevation ? "0 3px 10px rgb(0 0 0 / 0.2)" : "unset")};
 
-  & .logo {
-    position: absolute;
-    align-self: center;
-    left: ${(props) => (props.align === "left" ? "10%" : "50%")};
-    transform: translate(-50%, 0%);
-    cursor: pointer;
-  }
-
-  & .nav {
-    display: flex;
+  .logo {
+    display: inherit;
     gap: 56px;
-    color: #b0b8c1;
   }
 `;
+
+// & .logo {
+//   position: absolute;
+//   align-self: center;
+//   left: ${(props) => (props.align === "left" ? "10%" : "50%")};
+//   transform: translate(-50%, 0%);
+//   cursor: pointer;
+// }

@@ -8,3 +8,5 @@ export { PhotoCard } from "components/PhotoCard";
 export { InfoCard } from "components/InfoCard";
 export { Badge } from "components/Badge";
 export { ToggleMenu, StyledToggleMenu } from "components/ToggleMenu";
+export { Carousel } from "components/Carousel";
+export { Nav, StyledNav } from "components/Nav";

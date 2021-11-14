@@ -1,5 +1,6 @@
-import { Badge, Header, StyledToggleMenu } from "components";
+import { Badge, Carousel, Header, Nav, StyledToggleMenu } from "components";
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { theme } from "styles/Theme";
 
 const nav = [
@@ -11,10 +12,58 @@ const nav = [
   },
 ];
 
+const slide = [
+  {
+    id: 0,
+    img: "/images/Main/album1.png",
+  },
+  {
+    id: 1,
+    img: "/images/Main/album2.png",
+  },
+  {
+    id: 2,
+    img: "/images/Main/album1.png",
+  },
+  {
+    id: 3,
+    img: "/images/Main/album2.png",
+  },
+  {
+    id: 4,
+    img: "/images/Main/album1.png",
+  },
+  {
+    id: 5,
+    img: "/images/Main/album2.png",
+  },
+];
+
+const subNav = [
+  {
+    id: 0,
+    component: (
+      <NavLink activeStyle={{ color: "inherit", textShadow: "#464646 1px 1px 1px" }} to="/blackpink" exact>
+        BLACKPINK
+      </NavLink>
+    ),
+  },
+  {
+    id: 1,
+    component: (
+      <NavLink activeStyle={{ color: "inherit", textShadow: "#464646 1px 1px 1px" }} to="/bts" exact>
+        BTS
+      </NavLink>
+    ),
+  },
+];
+
 export const Main: React.FC = () => {
   return (
     <>
-      <Header align="center" logo="/images/logo_typo01.png" nav={nav} />
+      <Header logo="/images/logo_typo01.png" subNav={<Nav nav={subNav} />}>
+        <Nav nav={nav} />
+      </Header>
       <main>
         <div
           className="container"
@@ -120,11 +169,12 @@ export const Main: React.FC = () => {
               {"What's New?"}
             </div>
           </div>
-          <div style={{ display: "flex", width: "100%", height: "calc(100vh - 190px)" }}>
+          <Carousel slide={slide} />
+          {/* <div style={{ display: "flex", width: "100%", height: "calc(100vh - 190px)" }}>
             {[1, 2].map((v) => (
               <img key={v} src={`/images/Main/album${v}.png`} alt="album" width="100%" height="100%" />
             ))}
-          </div>
+          </div> */}
         </div>
       </main>
     </>

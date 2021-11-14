@@ -1,21 +1,73 @@
-import { Header, StyledToggleMenu } from "components";
+import { Header, StyledToggleMenu, Nav } from "components";
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "styles/Theme";
+// import { BsGlobe } from "react-icons/bs";
 
 const nav = [
-  { id: 0, component: <a href="#">LOOKBOOK</a> },
-  { id: 1, component: <a href="#">{"WHAT'S YOUR STYLE"}</a> },
+  {
+    id: 0,
+    component: (
+      <NavLink activeStyle={{ color: "#464646" }} to="/bts/lookbook" exact>
+        LOOKBOOK
+      </NavLink>
+    ),
+  },
+  {
+    id: 1,
+    component: (
+      <NavLink activeStyle={{ color: "#464646" }} to="/bts/match" exact>
+        {"WHAT'S YOUR STYLE"}
+      </NavLink>
+    ),
+  },
   {
     id: 2,
-    component: <StyledToggleMenu menu={["KOR", "ENG"]} />,
+    component: (
+      <>
+        {/* <BsGlobe style={{ verticalAlign: "middle" }} /> */}
+        <StyledToggleMenu menu={["KOR", "ENG"]} />
+      </>
+    ),
+  },
+];
+
+const subNav = [
+  {
+    id: 0,
+    component: (
+      <NavLink activeStyle={{ color: "#FBC3D0", textShadow: "#464646 1px 1px 1px" }} to="/blackpink" exact>
+        BLACKPINK
+      </NavLink>
+    ),
+  },
+  {
+    id: 1,
+    component: (
+      <NavLink
+        activeStyle={{
+          background: "linear-gradient(to right,  #811FE2, #AF70EB)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          // color: "#ffffff",
+          // textShadow: "#464646 1px 1px 2px",
+          fontWeight: 600,
+        }}
+        to="/bts"
+      >
+        BTS
+      </NavLink>
+    ),
   },
 ];
 
 export const BTSMain: React.FC = () => {
   return (
     <>
-      <Header align="left" logo="/images/logo_typo02.png" nav={nav} color="#00000005" />
+      <Header logo="/images/logo_typo02.png" subNav={<Nav nav={subNav} />}>
+        <Nav nav={nav} />
+      </Header>
       <Container>
         <div
           style={{
