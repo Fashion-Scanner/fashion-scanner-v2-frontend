@@ -48,6 +48,25 @@ const StyledButton = styled(BlackButton)`
   margin: 30px 0;
 `;
 
+const SharingButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5% 0;
+`;
+
+const SharingButton = styled.img`
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+  & + & {
+    margin-left: 1rem;
+  }
+`;
+
 export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
   const history = useHistory();
 
@@ -68,6 +87,14 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
       <span>뷔의 룩북을 참고해보세요!</span>
       <StyledButton onClick={onClick}>룩북 바로가기</StyledButton>
       <p>공유하기</p>
+      <SharingButtonContainer>
+        <SharingButton
+          src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
+          alt="kakao"
+        />
+        <SharingButton src="/images/Match/twitter_logo.png" alt="twitter" />
+        <SharingButton src="/images/Match/facebook_logo.png" alt="facebook" />
+      </SharingButtonContainer>
     </Container>
   );
 };
