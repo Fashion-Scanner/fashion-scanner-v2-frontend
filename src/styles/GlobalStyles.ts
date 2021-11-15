@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   html,
   body {
-    overflow: hidden;
+    overflow-x: hidden;
     margin: 0px;
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   }
@@ -17,6 +17,12 @@ const GlobalStyle = createGlobalStyle`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
 `;
 
 export default GlobalStyle;

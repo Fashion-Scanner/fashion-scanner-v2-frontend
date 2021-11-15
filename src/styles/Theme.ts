@@ -15,7 +15,14 @@ const color = {
   black: "#000",
 };
 
+const font = {
+  roboto: "'Roboto', sans-serif",
+  sansNeo: "'Spoqa Han Sans Neo', sans-serif",
+  rhodiumLibre: "'Rhodium Libre', serif",
+};
+
 export const theme = {
   device,
   color,
+  font,
 };
