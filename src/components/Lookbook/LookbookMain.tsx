@@ -7,7 +7,7 @@ interface IBar {
 }
 
 const LookBookMain: React.FC = () => {
-  const [currentCardId, setCurrentCardId] = useState(1);
+  const [currentCardId, setCurrentCardId] = useState<number>(1);
 
   useEffect(() => {
     console.log(currentCardId);
@@ -22,7 +22,8 @@ const LookBookMain: React.FC = () => {
   };
 
   const onClickNavCard = (e: React.MouseEvent) => {
-    setCurrentCardId(parseInt(e.target.dataset.id));
+    const target = e.target as HTMLElement;
+    if (target.dataset.id) setCurrentCardId(parseInt(target.dataset.id));
   };
 
   return (

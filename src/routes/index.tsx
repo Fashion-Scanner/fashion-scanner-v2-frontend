@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { MainPage } from "pages";
+import { MainPage, LookbookPage } from "pages";
 
 const RootRouter: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const RootRouter: React.FC = () => {
       <Switch>
         <Route path="/" exact component={MainPage} />
         <Route exact path="/bts" component={MainPage} />
-        <Route exact path="/bts/lookbook" component={MainPage} />
+        <Route exact path="/bts/lookbook" component={LookbookPage} />
         <Route exact path="/bts/match" component={MainPage} />
         <Route exact path="/faq" component={MainPage} />
         <Redirect from="*" to="/" />
