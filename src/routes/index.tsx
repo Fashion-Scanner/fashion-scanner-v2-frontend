@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { Main, BTSMain, LookbookPage, Match, Result, Loading, NotFound } from "pages";
+import { Footer } from "components";
 
 const RootRouter: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const RootRouter: React.FC = () => {
         <Route exact path="/faq" component={Main} />
         <Redirect from="*" to="/" />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 };

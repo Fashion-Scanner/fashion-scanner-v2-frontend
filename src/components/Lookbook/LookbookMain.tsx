@@ -29,7 +29,7 @@ const LookBookMain: React.FC = () => {
   return (
     <>
       <SwiperCard>
-        <Arrow alt="left_arrow" src="/images/left_arrow.png" onClick={onClickLeftArrow} />
+        <Arrow alt="left_arrow" src="/images/Lookbook/left_arrow.png" onClick={onClickLeftArrow} />
         <LookBookContent>
           <ContentTable>
             <Label>BRAND</Label>
@@ -46,11 +46,11 @@ const LookBookMain: React.FC = () => {
             <Content>KRW 3,000,000</Content>
           </ContentTable>
           <Bar top="600px" bottom="" />
-          <MemberPhoto alt="lookbook" src="/images/lookbook/v_01.png" />
-          <MemberCloth alt="lookbook" src="/images/lookbook/v_01_cloth.png" />
+          <MemberPhoto alt="lookbook" src="/images/Lookbook/LookbookMain/v_01.png" />
+          <MemberCloth alt="lookbook" src="/images/Lookbook/LookbookMain/v_01_cloth.png" />
           <Bar bottom="350px" top="" />
         </LookBookContent>
-        <Arrow alt="right_arrow" src="/images/right_arrow.png" onClick={onClickRightArrow} />
+        <Arrow alt="right_arrow" src="/images/Lookbook/right_arrow.png" onClick={onClickRightArrow} />
       </SwiperCard>
       <SwiperNav>
         <NavCard className={currentCardId - 1 ? "" : "active"} data-id={1} onClick={onClickNavCard} />
@@ -160,7 +160,7 @@ const NavCard = styled.div`
   width: 140px;
   height: 200px;
   border-radius: 20px;
-  background-image: url("/images/lookbook/v_01.png");
+  background-image: url("/images/Lookbook/LookbookMain/v_01.png");
   background-size: cover;
   margin: 0 6px;
   cursor: pointer;

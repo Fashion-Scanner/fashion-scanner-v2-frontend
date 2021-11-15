@@ -61,7 +61,7 @@ const SquareTitle = styled.div`
 const Square = styled.div<ISquare>`
   width: 300px;
   height: 300px;
-  background: ${(props) => `url('/images/lookbook_picker/bts/${props.memberName}.jpg')`};
+  background: ${(props) => `url('/images/Lookbook/LookbookPicker/bts/${props.memberName}.jpg')`};
   background-size: cover;
   background-position: center;
   border: 0.5px solid #eee;
@@ -70,7 +70,7 @@ const Square = styled.div<ISquare>`
   cursor: pointer;
 
   :hover {
-    background: ${(props) => `url('/images/lookbook_picker/bt21/${props.memberName}.jpg')`};
+    background: ${(props) => `url('/images/Lookbook/LookbookPicker/bt21/${props.memberName}.jpg')`};
     background-size: cover;
     background-position: center;
   }
