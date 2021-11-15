@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { Main, BTSMain, Match, Result, Loading, NotFound } from "pages";
+import { Main, BTSMain, LookbookPage, Match, Result, Loading, NotFound } from "pages";
 
 const RootRouter: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const RootRouter: React.FC = () => {
       <Switch>
         <Route path="/" exact component={Main} />
         <Route exact path="/bts" component={BTSMain} />
-        <Route exact path="/bts/lookbook" component={BTSMain} />
+        <Route exact path="/bts/lookbook" component={LookbookPage} />
         <Route exact path="/bts/match" component={Match} />
         <Route exact path="/bts/loading" component={Loading} />
         <Route exact path="/bts/result" component={Result} />
