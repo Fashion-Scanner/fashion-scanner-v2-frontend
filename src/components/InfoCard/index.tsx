@@ -92,8 +92,8 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
           src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
           alt="kakao"
         />
-        <SharingButton src="/images/Match/twitter_logo.png" alt="twitter" />
-        <SharingButton src="/images/Match/facebook_logo.png" alt="facebook" />
+        <SharingButton src="/images/InfoCard/twitter_logo.png" alt="twitter" />
+        <SharingButton src="/images/InfoCard/facebook_logo.png" alt="facebook" />
       </SharingButtonContainer>
     </Container>
   );
