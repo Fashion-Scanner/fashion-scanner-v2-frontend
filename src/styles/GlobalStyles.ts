@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     margin: 0px;
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    scrollbar-width: none;
   }
 
   * {

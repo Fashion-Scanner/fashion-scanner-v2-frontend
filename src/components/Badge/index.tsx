@@ -1,16 +1,22 @@
+import { HTMLAttributes } from "react";
 import styled from "styled-components";
 
-export interface BadgeTypes {
-  readonly bColor?: string;
-  readonly fColor?: string;
-  readonly padding?: string;
+export interface BadgeTypes extends HTMLAttributes<HTMLElement> {
+  onClick?: () => void;
 }
-
-export const Badge = styled.span<BadgeTypes>`
-  padding: ${(props) => (props.padding ? props.padding : "5px")};
+export const Badge: React.FC<BadgeTypes> = ({ style, onClick, children }) => {
+  return (
+    <StyledBadge style={style} onClick={onClick}>
+      {children}
+    </StyledBadge>
+  );
+};
+export const StyledBadge = styled.span`
+  padding: 5px;
   border-radius: 20px;
-  background-color: ${(props) => (props.bColor ? props.bColor : "#3a3a3a")};
-  color: ${(props) => (props.fColor ? props.fColor : "#ffffff")};
+  background-color: #3a3a3a;
+  color: black;
   font-size: 16px;
   margin-right: 10px;
+  cursor: pointer;
 `;

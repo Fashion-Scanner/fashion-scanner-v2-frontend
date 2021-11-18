@@ -15,19 +15,19 @@ export const Footer: React.FC = () => {
           </div>
           <ul>
             <li>
-              <Badge>
+              <Badge style={{ color: "#ffffff" }}>
                 <GiPositionMarker style={{ verticalAlign: "middle" }} size="1em" />
               </Badge>
               강남구 선릉로 433 세방빌딩 6층
             </li>
             <li>
-              <Badge>
+              <Badge style={{ color: "#ffffff" }}>
                 <ImPhone style={{ verticalAlign: "middle" }} size="1em" />
               </Badge>
               010-1234-5678
             </li>
             <li>
-              <Badge>
+              <Badge style={{ color: "#ffffff" }}>
                 <HiMail style={{ verticalAlign: "middle" }} size="1em" />
               </Badge>
               support@fashionscanner.com
@@ -46,20 +46,14 @@ export const Footer: React.FC = () => {
           <ul>
             <li>GET TO KNOW US</li>
             <li>
-              <Badge bColor="#ffffff" fColor="#050A0B">
-                <a href="#">
-                  <FaFacebookF style={{ verticalAlign: "middle" }} size="1em" />
-                </a>
+              <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
+                <FaFacebookF style={{ verticalAlign: "middle" }} size="1em" />
               </Badge>
-              <Badge bColor="#ffffff" fColor="#050A0B">
-                <a href="#">
-                  <ImInstagram style={{ verticalAlign: "middle" }} size="1em" />
-                </a>
+              <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
+                <ImInstagram style={{ verticalAlign: "middle" }} size="1em" />
               </Badge>
-              <Badge bColor="#ffffff" fColor="#050A0B">
-                <a href="#">
-                  <FaTwitter style={{ verticalAlign: "middle" }} size="1em" />
-                </a>
+              <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
+                <FaTwitter style={{ verticalAlign: "middle" }} size="1em" />
               </Badge>
             </li>
           </ul>
@@ -76,7 +70,7 @@ export const Footer: React.FC = () => {
 const Container = styled.footer`
   bottom: 0;
   background-color: #282c30;
-  position: relative;
+  position: sticky;
   width: 100%;
   color: #ffffff;
   padding: 40px 10% 0px;

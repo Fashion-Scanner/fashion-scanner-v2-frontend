@@ -1,4 +1,5 @@
 export { Header, StyledHeader } from "components/Header";
+export type { HeaderPropType } from "components/Header";
 export { Footer } from "components/Footer";
 export { MatchCover } from "components/MatchCover";
 export { MatchSystem } from "components/MatchSystem";
@@ -10,3 +11,5 @@ export { Badge } from "components/Badge";
 export { ToggleMenu, StyledToggleMenu } from "components/ToggleMenu";
 export { Carousel } from "components/Carousel";
 export { Nav, StyledNav } from "components/Nav";
+export type { NavType, NavPropsType } from "components/Nav";
+export { PageTemplate } from "components/PageTemplate";

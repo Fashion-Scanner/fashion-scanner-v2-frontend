@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "styles/Theme";
 
-interface StyledHeaderPropType {
+export interface StyledHeaderPropType {
   // readonly align: "left" | "center";
   readonly elevation?: 0 | 1;
   readonly color?: string;
 }
 
-interface HeaderPropType extends StyledHeaderPropType {
+export interface HeaderPropType extends StyledHeaderPropType {
   subNav?: React.ReactNode;
   logo: string;
 }
