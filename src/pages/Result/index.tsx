@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { keyframes, css } from "styled-components";
-import { PhotoCard, InfoCard } from "components";
+import { PhotoCard, InfoCard, PageTemplate } from "components";
+import { headerLayout } from "layout";
 
 const fadeIn = keyframes`
   from {
@@ -50,13 +51,15 @@ export const Result: React.FC = () => {
   };
 
   return (
-    <ResultContainer>
-      <ResultTitle isClicked={isClicked}>WHICH MEMBER ARE YOU?</ResultTitle>
-      <WhiteSpace isClicked={isClicked} />
-      <div style={{ display: "flex" }}>
-        <PhotoCard isClicked={isClicked} handleClick={onSubmit} />
-        <InfoCard isClicked={isClicked} />
-      </div>
-    </ResultContainer>
+    <PageTemplate headerLayout={headerLayout.bts}>
+      <ResultContainer>
+        <ResultTitle isClicked={isClicked}>WHICH MEMBER ARE YOU?</ResultTitle>
+        <WhiteSpace isClicked={isClicked} />
+        <div style={{ display: "flex" }}>
+          <PhotoCard isClicked={isClicked} handleClick={onSubmit} />
+          <InfoCard isClicked={isClicked} />
+        </div>
+      </ResultContainer>
+    </PageTemplate>
   );
 };

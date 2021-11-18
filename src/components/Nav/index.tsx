@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export interface Nav {
+export interface NavType {
   id: number;
   component: string | React.ReactNode;
 }
 
 export interface NavPropsType {
-  nav: Nav[];
+  nav: NavType[];
 }
 
 export const Nav: React.FC<NavPropsType> = ({ nav }) => {

@@ -1,3 +1,5 @@
+import { PageTemplate } from "components";
+import { headerLayout } from "layout";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
@@ -77,16 +79,18 @@ export const Loading: React.FC = () => {
   });
 
   return (
-    <Container>
-      <div style={{ display: "flex" }}>
-        <LoadingText>Loading</LoadingText>
-        <LoadingDots>
-          <Dot />
-          <Dot />
-          <Dot />
-        </LoadingDots>
-      </div>
-      <LoadingImg src="/images/Loading/loading-img.gif" alt="loading-img" />
-    </Container>
+    <PageTemplate headerLayout={headerLayout.bts}>
+      <Container>
+        <div style={{ display: "flex" }}>
+          <LoadingText>Loading</LoadingText>
+          <LoadingDots>
+            <Dot />
+            <Dot />
+            <Dot />
+          </LoadingDots>
+        </div>
+        <LoadingImg src="/images/Loading/loading-img.gif" alt="loading-img" />
+      </Container>
+    </PageTemplate>
   );
 };
