@@ -23,7 +23,9 @@ const PhotoCardContainer = styled.div`
 
   img {
     width: 300px;
-    height: 400px;
+    height: 480px;
+    border-radius: 20px;
+    border: 1px solid black;
     margin-top: 30px;
     backface-visibility: hidden;
     transition: all 1s;
@@ -35,8 +37,6 @@ const PhotoCardContainer = styled.div`
 
   & img:nth-child(1) {
     position: absolute;
-    border-radius: 20px;
-    border: 1px solid black;
     transform: rotateY(0deg);
   }
   & img:nth-child(2) {
@@ -68,7 +68,7 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({ isClicked, handleClick }) 
       <p style={{ display: isClicked ? "none" : "block" }}>포토카드를 눌러보세요.</p>
       <div>
         <img src={`/images/PhotoCard/photo_card_cover_${cardIndex}.jpeg`} alt="photo-card" onClick={handleClick} />
-        <img src="/images/PhotoCard/member-card.jpg" alt="photo-card" onClick={handleClick} />
+        <img src="/images/PhotoCard/v.jpeg" alt="photo-card" onClick={handleClick} />
       </div>
     </PhotoCardContainer>
   );
