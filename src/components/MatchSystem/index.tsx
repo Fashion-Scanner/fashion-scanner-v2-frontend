@@ -2,13 +2,14 @@ import React, { useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import styled, { css } from "styled-components";
 import { BlackButton } from "components";
+import axios from "axios";
 
 const MatchSystemContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10vh 0;
+  margin: 2% 0;
   opacity: 0;
   transform: translateY(20vh);
   visibility: hidden;
@@ -51,6 +52,7 @@ const FileClear = styled.div`
 
 export const MatchSystem: React.FC = () => {
   const [isVisible, setVisible] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageSrc, setImageSrc] = useState("");
   const matchSystemRef = useRef<HTMLDivElement>(null);
@@ -74,9 +76,18 @@ export const MatchSystem: React.FC = () => {
   });
 
   const onSubmit = () => {
-    history.push({
-      pathname: "/bts/loading",
-    });
+    if (imageFile && isChecked) {
+      const formData = new FormData();
+      formData.append("user_image", imageFile);
+      axios
+        .post("http://ec2-13-124-117-190.ap-northeast-2.compute.amazonaws.com:8000/api/v1/matching/info/", formData)
+        .then((res) => {
+          console.log(res.data.data.name);
+        });
+      history.push({
+        pathname: "/bts/loading",
+      });
+    }
   };
 
   return (
@@ -86,6 +97,7 @@ export const MatchSystem: React.FC = () => {
       </MatchFlexDiv>
       <input
         type="file"
+        accept="image/*"
         style={{ display: "none" }}
         ref={imageInput}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +105,6 @@ export const MatchSystem: React.FC = () => {
           if (fileDate) {
             setImageFile(fileDate);
             setImageSrc(URL.createObjectURL(fileDate));
-            console.log(imageFile);
           }
         }}
       />
@@ -126,7 +137,13 @@ export const MatchSystem: React.FC = () => {
         <p>첨부된 사진은 매칭 후 내부 방침 및 기타 관련 법률에 따라 일정기간 저장됩니다.</p>
       </MatchFlexDiv>
       <MatchFlexDiv>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => {
+            setIsChecked(!isChecked);
+          }}
+        />
         <span>동의합니다.</span>
       </MatchFlexDiv>
       <MatchFlexDiv>

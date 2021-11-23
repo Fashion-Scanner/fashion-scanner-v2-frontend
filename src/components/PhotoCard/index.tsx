@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 
 interface PhotoCardProps {
@@ -57,12 +57,7 @@ const PhotoCardContainer = styled.div`
 `;
 
 export const PhotoCard: React.FC<PhotoCardProps> = ({ isClicked, handleClick }) => {
-  const [cardIndex, setCardIndex] = useState<number | null>(null);
-  useEffect(() => {
-    if (cardIndex === null) {
-      setCardIndex(shuffleCards(1, 3));
-    }
-  }, [cardIndex]);
+  const cardIndex = shuffleCards(1, 3);
   return (
     <PhotoCardContainer isClicked={isClicked}>
       <p style={{ display: isClicked ? "none" : "block" }}>포토카드를 눌러보세요.</p>

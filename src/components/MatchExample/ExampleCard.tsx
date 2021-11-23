@@ -16,7 +16,7 @@ interface CardProps {
 
 const Card = styled.div`
   opacity: 0;
-  transform: translateY(20vh);
+  transform: translateY(10vh);
   visibility: hidden;
   transition: opacity 1s ease-out, transform 1.2s ease-out;
   will-change: opacity, visibility;

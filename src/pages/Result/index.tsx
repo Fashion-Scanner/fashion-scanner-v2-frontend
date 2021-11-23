@@ -45,7 +45,7 @@ const WhiteSpace = styled.div`
 export const Result: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
 
-  const onSubmit = (): void => {
+  const handleClick = (): void => {
     setIsClicked(!isClicked);
   };
 
@@ -54,7 +54,7 @@ export const Result: React.FC = () => {
       <ResultTitle isClicked={isClicked}>WHICH MEMBER ARE YOU?</ResultTitle>
       <WhiteSpace isClicked={isClicked} />
       <div style={{ display: "flex" }}>
-        <PhotoCard isClicked={isClicked} handleClick={onSubmit} />
+        <PhotoCard isClicked={isClicked} handleClick={handleClick} />
         <InfoCard isClicked={isClicked} />
       </div>
     </ResultContainer>

@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router";
 import { BlackButton } from "components";
 
 interface InfoCardProps {
   isClicked: boolean;
+}
+
+declare global {
+  interface Window {
+    Kakao: any;
+  }
 }
 
 const fadeIn = keyframes`
@@ -70,6 +76,43 @@ const SharingButton = styled.img`
 export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
   const history = useHistory();
 
+  useEffect(() => {
+    kakaoLinkInit();
+  }, []);
+
+  const kakaoLinkInit = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init(process.env.REACT_APP_KAKAO_INIT_KEY);
+      }
+    }
+  };
+
+  const kakaoShare = () => {
+    window.Kakao.Link.sendDefault({
+      objectType: "feed",
+      content: {
+        title: "FASHION SCANNER",
+        description: "#AI #FASHION #SCANNING #BLACKPINK #MATCHING",
+        imageUrl: "http://localhost:3000/images/PhotoCard/photo_card_cover_1.jpeg",
+        link: {
+          mobileWebUrl: `http://localhost:3000/bts/result`,
+          webUrl: `http://localhost:3000/bts/result`,
+        },
+      },
+      buttons: [
+        {
+          title: "매칭 결과 보기",
+          link: {
+            mobileWebUrl: `http://localhost:3000/bts/result`,
+            webUrl: `http://localhost:3000/bts/result`,
+          },
+        },
+      ],
+    });
+  };
+
   if (!isClicked) {
     return null;
   }
@@ -91,6 +134,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
         <SharingButton
           src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
           alt="kakao"
+          onClick={kakaoShare}
         />
         <SharingButton src="/images/InfoCard/twitter_logo.png" alt="twitter" />
         <SharingButton src="/images/InfoCard/facebook_logo.png" alt="facebook" />
