@@ -76,14 +76,20 @@ const Slide = styled.div<SlidePropType>`
   left: 0;
   right: 0;
   bottom: 0;
-  width: 80vw;
-  height: 60vw;
+  width: 40vw;
+  height: 30vw;
   max-width: 380px;
   max-height: 250px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   transform-origin: center;
-  transform: ${(props) => `rotateY(-${props.deg}deg) translateZ(-35vw)`};
+  transform: ${(props) => `rotateY(${props.deg}deg) translateZ(-35vw)`};
+  & img {
+    filter: drop-shadow(10px 10px 5px #000000ee);
+    width: 100%;
+    height: 100%;
+    transform: rotateY(180deg);
+  }
 `;
 
 const makeKeyFrame = ({ len, batch }: SlideContainerPropType) => {

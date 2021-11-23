@@ -4,10 +4,11 @@ import { GiPositionMarker } from "react-icons/gi";
 import { HiMail } from "react-icons/hi";
 import { ImPhone, ImInstagram } from "react-icons/im";
 import { Badge } from "components";
+import React, { HTMLAttributes } from "react";
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<HTMLAttributes<HTMLElement>> = (props) => {
   return (
-    <Container>
+    <Container {...props}>
       <Wrapper>
         <MainSection>
           <div className="logo">
