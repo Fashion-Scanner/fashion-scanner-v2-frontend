@@ -6,7 +6,7 @@ export const Match: React.FC = () => {
   const matchExampleRef = useRef<HTMLDivElement>(null);
 
   return (
-    <PageTemplate headerLayout={headerLayout.bts} style={{ marginTop: 0 }}>
+    <PageTemplate headerLayout={headerLayout.bts}>
       <MatchCover matchExampleComponent={matchExampleRef} />
       <MatchExample ref={matchExampleRef} />
       <MatchSystem />

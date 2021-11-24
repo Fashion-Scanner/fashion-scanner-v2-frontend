@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useLocation, useHistory, RouteComponentProps } from "react-router-dom";
+import { useLocation, RouteComponentProps } from "react-router-dom";
 import styled, { keyframes, css } from "styled-components";
 import { PhotoCard, InfoCard, PageTemplate } from "components";
 import { headerLayout } from "layout";
@@ -40,7 +40,7 @@ const ResultTitle = styled.div`
       display: none;
     `}
   font-weight: bold;
-  font-size: 40px;
+  font-size: 3.5rem;
   animation: ${fadeIn} 1s ease-in-out;
 `;
 
@@ -55,11 +55,9 @@ const WhiteSpace = styled.div`
 
 export const Result: React.FC<RouteComponentProps<ResultProps>> = ({ match }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const history = useHistory();
   const location = useLocation<Location>();
   const memberName = useRef<string | undefined>();
   memberName.current = (location.state && location.state.memberName) || (match.params && match.params.memberName);
-  console.log(history);
 
   const handleClick = (): void => {
     setIsClicked(!isClicked);

@@ -1,5 +1,49 @@
 {
   "guide": "포토카드를 눌러보세요.",
   "btn1": "룩북 바로가기",
-  "btn2": "공유하기"
+  "btn2": "공유하기",
+  "info": {
+    "v": {
+      "t1": "Your fashion is V.",
+      "t2": "You have unique fashion sense,",
+      "t3": "but Sometimes that sense is buried because of his handsome face.",
+      "t4": "Check out to V's lookbook!"
+    },
+    "jin": {
+      "t1": "Your fashion is Jin.",
+      "t2": "You enjoy a neat and warm style.",
+      "t3": "Check out to Jin's lookbook!",
+      "t4": ""
+    },
+    "jimin": {
+      "t1": "Your fashion is Jimin.",
+      "t2": "You enjoy a comfortable look, but you're always the standard",
+      "t3": "that gives points with colors.",
+      "t4": "Check out to Jimin's lookbook!"
+    },
+    "jhope": {
+      "t1": "Your fashion is J-Hope.",
+      "t2": "You are a master of transformation",
+      "t3": "that goes back and forth between casual and glamorous.",
+      "t4": "Check out J-Hope's lookbook!"
+    },
+    "suga": {
+      "t1": "Your fashion is SUGA",
+      "t2": "You enjoy a swagy style,",
+      "t3": "but sometimes you show off a cute outfit.",
+      "t4": "Check out SUGA's lookbook!"
+    },
+    "rm": {
+      "t1": "Your fashion is RM",
+      "t2": "You have an extraordinary ability",
+      "t3": "to make any clothes look like your own.",
+      "t4": "Check out RM's lookbook!"
+    },
+    "jungkook": {
+      "t1": "Your fashion is Jungkook",
+      "t2": "You enjoy a comfortable and simple style.",
+      "t3": "Check out Jungkook's lookbook!",
+      "t4": ""
+    }
+  }
 }

@@ -10,8 +10,8 @@ const CoverContainer = styled.div`
 `;
 
 const CoverBackground = styled.img`
-  filter: grayscale(100%);
-  height: 100vh;
+  opacity: 0.5;
+  height: 90vh;
   width: 100vw;
 `;
 
@@ -21,7 +21,7 @@ const CoverImage = styled.img`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
-  height: 80vh;
+  height: 70vh;
   z-index: 5;
 `;
 
@@ -29,7 +29,8 @@ const CoverText = styled.div`
   position: absolute;
   transform: rotate(-17deg) translate(0, -50%);
   top: 50%;
-  font-size: 120px;
+  font-size: 7.5vw;
+  font-weight: bold;
   text-align: center;
   color: white;
   z-index: 7;
@@ -39,8 +40,9 @@ const BTSText = styled.div`
   position: absolute;
   transform: rotate(-17deg);
   right: 20%;
-  bottom: 20%;
-  font-size: 260px;
+  bottom: 13%;
+  font-size: 17vw;
+  font-family: "Sarina", cursive;
   text-align: end;
   color: #bf81ca;
   z-index: 7;

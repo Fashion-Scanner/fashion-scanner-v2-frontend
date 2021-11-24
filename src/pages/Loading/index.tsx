@@ -87,10 +87,7 @@ export const Loading: React.FC = () => {
         });
       } else {
         history.push({
-          pathname: "/bts/notfound",
-          state: {
-            from: history.location.pathname,
-          },
+          pathname: "/bts/failure",
         });
       }
     }, 3000);

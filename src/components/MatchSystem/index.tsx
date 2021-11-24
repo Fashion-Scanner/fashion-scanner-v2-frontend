@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { BlackButton } from "components";
 import axios from "axios";
 import FadeInSection from "components/Common/FadeInSection";
+import { Trans } from "react-i18next";
+import swal from "sweetalert";
 
 const MatchSystemContainer = styled.div`
   width: 100%;
@@ -20,6 +22,7 @@ const MatchFlexDiv = styled.div`
 
 const MatchSystemTitle = styled.span`
   font-size: 50px;
+  font-weight: bold;
   text-align: center;
 `;
 
@@ -45,11 +48,19 @@ export const MatchSystem: React.FC = () => {
   const history = useHistory();
 
   const onSubmit = () => {
+    if (imageFile === null) {
+      swal({
+        title: "스캐닝 실패",
+        text: "업로드한 이미지 파일이 없습니다.",
+        icon: "error",
+      });
+    }
+
     if (imageFile && isChecked) {
       const formData = new FormData();
       formData.append("user_image", imageFile);
       axios
-        .post("https://kpop.fashion-scanner.site:8000/api/v1/matching/info/", formData)
+        .post("https://kpop.fashion-scanner.site:8000/api/v1/member/matching/", formData)
         .then((res) => {
           const memberName = res.data.data.name;
           history.push({
@@ -69,7 +80,9 @@ export const MatchSystem: React.FC = () => {
     <FadeInSection>
       <MatchSystemContainer>
         <MatchFlexDiv>
-          <MatchSystemTitle>가장 자주 입는 옷 사진을 올려주세요</MatchSystemTitle>
+          <MatchSystemTitle>
+            <Trans i18nKey="match:title" />
+          </MatchSystemTitle>
         </MatchFlexDiv>
         <input
           type="file"
@@ -105,12 +118,14 @@ export const MatchSystem: React.FC = () => {
                 setImageSrc("");
               }}
             >
-              파일 삭제
+              <Trans i18nKey="match:btn1" />
             </FileClear>
           </div>
         )}
         <MatchFlexDiv>
-          <p>첨부된 사진은 매칭 후 내부 방침 및 기타 관련 법률에 따라 일정기간 저장됩니다.</p>
+          <p style={{ fontWeight: "bold", color: "gray" }}>
+            <Trans i18nKey="match:info" />
+          </p>
         </MatchFlexDiv>
         <MatchFlexDiv>
           <input
@@ -120,10 +135,14 @@ export const MatchSystem: React.FC = () => {
               setIsChecked(!isChecked);
             }}
           />
-          <span>동의합니다.</span>
+          <span style={{ fontWeight: "bold" }}>
+            <Trans i18nKey="match:check" />
+          </span>
         </MatchFlexDiv>
         <MatchFlexDiv>
-          <BlackButton onClick={onSubmit}>결과보기</BlackButton>
+          <BlackButton onClick={onSubmit}>
+            <Trans i18nKey="match:btn2" />
+          </BlackButton>
         </MatchFlexDiv>
       </MatchSystemContainer>
     </FadeInSection>

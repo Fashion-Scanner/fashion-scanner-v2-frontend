@@ -1,18 +1,18 @@
 {
-  "title": "가장 자주 입는 옷 사진을 올려주세요.",
-  "info": "첨부된 사진은 목적 달성 후 내부 방침 및 기타 관련 법령에 따라 일정기간 저장됩니다.",
-  "check": "동의합니다.",
-  "btn1": "파일 삭제",
-  "btn2": "결과 보기",
+  "title": "Please upload a picture of the clothes you wear most often.",
+  "info": "Attached photos are stored for a certain period of time in accordance with internal policies and other relevant laws after the purpose is achieved.",
+  "check": "I agree.",
+  "btn1": "Delete file",
+  "btn2": "View Results",
   "goodExample": {
-    "t1": "정면을 보고 바르게 선 자세로 찍은 사진일 수록 분석의 정확도가 높아집니다.",
-    "t2": "배경색은 흰색에 가까울 수록 좋습니다.",
-    "t3": "거울셀카보다는 다른 사람이 찍어준 사진을 활용해보세요."
+    "t1": "A picture of standing posture.",
+    "t2": "A picture with white background.",
+    "t3": "A picture taken by others rather than a selfie."
   },
   "badExample": {
-    "t1": "여러명이 함께 찍은 사진은 분석할 수가 없습니다.",
-    "t2": "옷의 일부만 보이는 사진은 제대로 분석 할 수 없습니다.",
-    "t3": "배경색이 다양할수록 분석의 정확도가 떨어집니다.",
-    "t4": "흑백사진은 분석 시 정확한 결과를 얻기가 힘듭니다."
+    "t1": "A picture of a group of people.",
+    "t2": "A picture showing limited part of clothes.",
+    "t3": "A picture with complicated background.",
+    "t4": "A black and white picture."
   }
 }
