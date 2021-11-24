@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Trans } from "react-i18next";
 
 interface LookBookPickerProps {
   setMemberName: (memberName: string) => void;
@@ -18,7 +19,7 @@ const LookbookPicker: React.FC<LookBookPickerProps> = ({ setMemberName }) => {
     <MemberPickerContainer>
       <SquareTitle>
         <p>
-          다른 멤버 <br /> 찾아 보기
+          <Trans i18nKey="lookbook:option" />
         </p>
       </SquareTitle>
       <Square id="jhope" memberName="jhope" onClick={pickMember} />

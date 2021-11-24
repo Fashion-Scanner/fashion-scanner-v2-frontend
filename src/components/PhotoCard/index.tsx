@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import styled, { css } from "styled-components";
+import { Trans } from "react-i18next";
 
 interface PhotoCardProps {
   isClicked: boolean;
@@ -20,6 +21,7 @@ const PhotoCardContainer = styled.div`
 
   p {
     font-size: 20px;
+    font-weight: bold;
   }
 
   img {
@@ -60,10 +62,11 @@ const PhotoCardContainer = styled.div`
 export const PhotoCard: React.FC<PhotoCardProps> = ({ isClicked, memberName, handleClick }) => {
   const cardIndex = useRef<number | undefined>();
   cardIndex.current = cardIndex.current || shuffleCards(1, 3);
-  // const cardIndex = shuffleCards(1, 3);
   return (
     <PhotoCardContainer isClicked={isClicked}>
-      <p style={{ display: isClicked ? "none" : "block" }}>포토카드를 눌러보세요.</p>
+      <p style={{ display: isClicked ? "none" : "block" }}>
+        <Trans i18nKey="result:guide" />
+      </p>
       <div>
         <img
           className="front"
