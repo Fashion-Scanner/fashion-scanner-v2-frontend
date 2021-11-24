@@ -17,19 +17,19 @@ export const Footer: React.FC<HTMLAttributes<HTMLElement>> = (props) => {
           <ul>
             <li>
               <Badge style={{ color: "#ffffff" }}>
-                <GiPositionMarker style={{ verticalAlign: "middle" }} size="1em" />
+                <GiPositionMarker />
               </Badge>
               강남구 선릉로 433 세방빌딩 6층
             </li>
             <li>
               <Badge style={{ color: "#ffffff" }}>
-                <ImPhone style={{ verticalAlign: "middle" }} size="1em" />
+                <ImPhone />
               </Badge>
               010-1234-5678
             </li>
             <li>
               <Badge style={{ color: "#ffffff" }}>
-                <HiMail style={{ verticalAlign: "middle" }} size="1em" />
+                <HiMail />
               </Badge>
               support@fashionscanner.com
             </li>
@@ -48,20 +48,20 @@ export const Footer: React.FC<HTMLAttributes<HTMLElement>> = (props) => {
             <li>GET TO KNOW US</li>
             <li>
               <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
-                <FaFacebookF style={{ verticalAlign: "middle" }} size="1em" />
+                <FaFacebookF />
               </Badge>
               <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
-                <ImInstagram style={{ verticalAlign: "middle" }} size="1em" />
+                <ImInstagram />
               </Badge>
               <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
-                <FaTwitter style={{ verticalAlign: "middle" }} size="1em" />
+                <FaTwitter />
               </Badge>
             </li>
           </ul>
         </SubSection>
       </Wrapper>
       <div style={{ textAlign: "center", padding: "20px 0px 40px" }}>
-        <FaRegCopyright size="1.5em" style={{ verticalAlign: "middle" }} /> Copyright Fashion Scanner. All Rights
+        <FaRegCopyright size="1.5em" style={{ verticalAlign: "text-bottom" }} /> Copyright Fashion Scanner. All Rights
         Reserverved. 2021
       </div>
     </Container>

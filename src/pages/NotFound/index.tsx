@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BlackButton } from "components";
+import { useHistory } from "react-router-dom";
 
 const Container = styled("div")`
   height: 100vh;
@@ -29,12 +30,13 @@ const Content = styled("p")`
 `;
 
 export const NotFound: React.FC = () => {
+  const history = useHistory();
   return (
     <Container>
       <Img src="/images/NotFound/not-found-img.jpg" alt="not-found-img" />
       <Title>잠시 후 다시 시도해 주세요</Title>
       <Content>같은 문제가 계속되면 다른 이미지를 사용해주세요.</Content>
-      <BlackButton>이전으로 돌아가기</BlackButton>
+      <BlackButton onClick={() => history.goBack()}>이전으로 돌아가기</BlackButton>
     </Container>
   );
 };

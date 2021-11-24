@@ -5,6 +5,7 @@ import { theme } from "styles/Theme";
 import { FaArrowRight } from "react-icons/fa";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 const slide = [
   {
@@ -141,7 +142,7 @@ export const Main: React.FC = () => {
           <ImgLink onClick={() => history.push(`/${cardImg}`)}>
             <div className="floatText">
               <span>
-                바로가기 <FaArrowRight style={{ verticalAlign: "text-top" }} />
+                <Trans i18nKey="shortcut" /> <FaArrowRight />
               </span>
             </div>
             <img src={`/images/Main/${cardImg}.jpg`} alt={cardImg} width="100%" height="100%" />
