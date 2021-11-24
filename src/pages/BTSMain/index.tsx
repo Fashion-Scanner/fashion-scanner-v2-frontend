@@ -319,7 +319,7 @@ export const BTSMain: React.FC = () => {
               </div>
               <NavLink to="/bts/match" className="floatText">
                 <span>
-                  바로가기 <FaArrowRight style={{ verticalAlign: "text-top" }} />
+                  바로가기 <FaArrowRight />
                 </span>
               </NavLink>
             </FloatBox>
