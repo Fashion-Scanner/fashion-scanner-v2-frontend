@@ -17,7 +17,7 @@ export const LookbookPage: React.FC = () => {
   return (
     <PageTemplate headerLayout={headerLayout.bts}>
       <LookBookHeader memberName={memberName} />
-      <LookbookMain />
+      <LookbookMain memberName={memberName} />
       <LookbookPicker setMemberName={setMemberName} />
     </PageTemplate>
   );

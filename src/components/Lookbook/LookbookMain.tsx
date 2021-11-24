@@ -1,17 +1,33 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 interface IBar {
   top: string;
   bottom: string;
 }
 
-const LookBookMain: React.FC = () => {
+interface INavCard {
+  url: string;
+}
+
+interface LookBookHeaderProps {
+  memberName: string;
+}
+
+const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
+  const [koClothes, setKoClothes] = useState([]);
+  const [enClothes, setEnClothes] = useState([]);
   const [currentCardId, setCurrentCardId] = useState<number>(1);
+  const MemberPhotoUrl = (id: number) => `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${id}.png`;
+  const MemberClothUrl = `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${currentCardId}_1.png`;
 
   useEffect(() => {
-    console.log(currentCardId);
-  }, [currentCardId]);
+    axios.get("https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=v").then((res) => {
+      setKoClothes(res.data.ko.clothes);
+      setEnClothes(res.data.en.clothes);
+    });
+  }, []);
 
   const onClickLeftArrow = () => {
     setCurrentCardId((prev) => (prev > 1 ? prev - 1 : prev - 1 + 8));
@@ -32,6 +48,8 @@ const LookBookMain: React.FC = () => {
         <Arrow alt="left_arrow" src="/images/Lookbook/left_arrow.png" onClick={onClickLeftArrow} />
         <LookBookContent>
           <ContentTable>
+            {koClothes.map(() => null)}
+            {enClothes.map(() => null)}
             <Label>BRAND</Label>
             <Content>구찌</Content>
             <Label>CATEGORY</Label>
@@ -46,21 +64,22 @@ const LookBookMain: React.FC = () => {
             <Content>KRW 3,000,000</Content>
           </ContentTable>
           <Bar top="600px" bottom="" />
-          <MemberPhoto alt="lookbook" src="/images/Lookbook/LookbookMain/v_01.png" />
-          <MemberCloth alt="lookbook" src="/images/Lookbook/LookbookMain/v_01_cloth.png" />
+          <MemberPhoto alt="lookbook" src={MemberPhotoUrl(currentCardId)} />
+          <MemberCloth alt="lookbook" src={MemberClothUrl} />
           <Bar bottom="350px" top="" />
         </LookBookContent>
         <Arrow alt="right_arrow" src="/images/Lookbook/right_arrow.png" onClick={onClickRightArrow} />
       </SwiperCard>
       <SwiperNav>
-        <NavCard className={currentCardId - 1 ? "" : "active"} data-id={1} onClick={onClickNavCard} />
-        <NavCard className={currentCardId - 2 ? "" : "active"} data-id={2} onClick={onClickNavCard} />
-        <NavCard className={currentCardId - 3 ? "" : "active"} data-id={3} onClick={onClickNavCard} />
-        <NavCard className={currentCardId - 4 ? "" : "active"} data-id={4} onClick={onClickNavCard} />
-        <NavCard className={currentCardId - 5 ? "" : "active"} data-id={5} onClick={onClickNavCard} />
-        <NavCard className={currentCardId - 6 ? "" : "active"} data-id={6} onClick={onClickNavCard} />
-        <NavCard className={currentCardId - 7 ? "" : "active"} data-id={7} onClick={onClickNavCard} />
-        <NavCard className={currentCardId - 8 ? "" : "active"} data-id={8} onClick={onClickNavCard} />
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+          <NavCard
+            key={i}
+            className={currentCardId - i ? "" : "active"}
+            data-id={i}
+            onClick={onClickNavCard}
+            url={MemberPhotoUrl(i)}
+          />
+        ))}
       </SwiperNav>
     </>
   );
@@ -156,11 +175,11 @@ const SwiperNav = styled.div`
   }
 `;
 
-const NavCard = styled.div`
+const NavCard = styled.div<INavCard>`
   width: 140px;
   height: 200px;
   border-radius: 20px;
-  background-image: url("/images/Lookbook/LookbookMain/v_01.png");
+  background-image: url(${(props) => props.url});
   background-size: cover;
   margin: 0 6px;
   cursor: pointer;
