@@ -14,5 +14,9 @@
     "t2": "A picture showing limited part of clothes.",
     "t3": "A picture with complicated background.",
     "t4": "A black and white picture."
+  },
+  "imageUploadError": {
+    "scanningFailed": "Scanning failed",
+    "imageNotFound": "There is no image file uploaded."
   }
 }
