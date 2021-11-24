@@ -4,10 +4,11 @@ import { GiPositionMarker } from "react-icons/gi";
 import { HiMail } from "react-icons/hi";
 import { ImPhone, ImInstagram } from "react-icons/im";
 import { Badge } from "components";
+import React, { HTMLAttributes } from "react";
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<HTMLAttributes<HTMLElement>> = (props) => {
   return (
-    <Container>
+    <Container {...props}>
       <Wrapper>
         <MainSection>
           <div className="logo">
@@ -15,20 +16,20 @@ export const Footer: React.FC = () => {
           </div>
           <ul>
             <li>
-              <Badge>
-                <GiPositionMarker style={{ verticalAlign: "middle" }} size="1em" />
+              <Badge style={{ color: "#ffffff" }}>
+                <GiPositionMarker />
               </Badge>
               강남구 선릉로 433 세방빌딩 6층
             </li>
             <li>
-              <Badge>
-                <ImPhone style={{ verticalAlign: "middle" }} size="1em" />
+              <Badge style={{ color: "#ffffff" }}>
+                <ImPhone />
               </Badge>
               010-1234-5678
             </li>
             <li>
-              <Badge>
-                <HiMail style={{ verticalAlign: "middle" }} size="1em" />
+              <Badge style={{ color: "#ffffff" }}>
+                <HiMail />
               </Badge>
               support@fashionscanner.com
             </li>
@@ -46,27 +47,21 @@ export const Footer: React.FC = () => {
           <ul>
             <li>GET TO KNOW US</li>
             <li>
-              <Badge bColor="#ffffff" fColor="#050A0B">
-                <a href="#">
-                  <FaFacebookF style={{ verticalAlign: "middle" }} size="1em" />
-                </a>
+              <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
+                <FaFacebookF />
               </Badge>
-              <Badge bColor="#ffffff" fColor="#050A0B">
-                <a href="#">
-                  <ImInstagram style={{ verticalAlign: "middle" }} size="1em" />
-                </a>
+              <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
+                <ImInstagram />
               </Badge>
-              <Badge bColor="#ffffff" fColor="#050A0B">
-                <a href="#">
-                  <FaTwitter style={{ verticalAlign: "middle" }} size="1em" />
-                </a>
+              <Badge style={{ backgroundColor: "#ffffff", color: "#050A0B" }}>
+                <FaTwitter />
               </Badge>
             </li>
           </ul>
         </SubSection>
       </Wrapper>
       <div style={{ textAlign: "center", padding: "20px 0px 40px" }}>
-        <FaRegCopyright size="1.5em" style={{ verticalAlign: "middle" }} /> Copyright Fashion Scanner. All Rights
+        <FaRegCopyright size="1.5em" style={{ verticalAlign: "text-bottom" }} /> Copyright Fashion Scanner. All Rights
         Reserverved. 2021
       </div>
     </Container>
@@ -76,7 +71,7 @@ export const Footer: React.FC = () => {
 const Container = styled.footer`
   bottom: 0;
   background-color: #282c30;
-  position: relative;
+  position: sticky;
   width: 100%;
   color: #ffffff;
   padding: 40px 10% 0px;

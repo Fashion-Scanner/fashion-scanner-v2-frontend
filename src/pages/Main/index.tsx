@@ -1,74 +1,52 @@
-import { Badge, Carousel, Header, Nav, StyledToggleMenu } from "components";
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Badge, Carousel, PageTemplate } from "components";
+import { headerLayout } from "layout";
 import { theme } from "styles/Theme";
-
-const nav = [
-  // { id: 0, component: <a href="#">LOOKBOOK</a> },
-  // { id: 1, component: <a href="#">{"WHAT'S YOUR STYLE"}</a> },
-  {
-    id: 0,
-    component: <StyledToggleMenu menu={["KOR", "ENG"]} />,
-  },
-];
+import { FaArrowRight } from "react-icons/fa";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 const slide = [
   {
     id: 0,
-    img: "/images/Main/album1.png",
+    img: "/images/Main/blackpink_1.jpg",
   },
   {
     id: 1,
-    img: "/images/Main/album2.png",
+    img: "/images/Main/bts_1.jpg",
   },
   {
     id: 2,
-    img: "/images/Main/album1.png",
+    img: "/images/Main/blackpink_2.jpg",
   },
   {
     id: 3,
-    img: "/images/Main/album2.png",
+    img: "/images/Main/bts_3.jpg",
   },
   {
     id: 4,
-    img: "/images/Main/album1.png",
+    img: "/images/Main/blackpink_4.png",
   },
   {
     id: 5,
-    img: "/images/Main/album2.png",
-  },
-];
-
-const subNav = [
-  {
-    id: 0,
-    component: (
-      <NavLink activeStyle={{ color: "inherit", textShadow: "#464646 1px 1px 1px" }} to="/blackpink" exact>
-        BLACKPINK
-      </NavLink>
-    ),
-  },
-  {
-    id: 1,
-    component: (
-      <NavLink activeStyle={{ color: "inherit", textShadow: "#464646 1px 1px 1px" }} to="/bts" exact>
-        BTS
-      </NavLink>
-    ),
+    img: "/images/Main/bts_4.jpg",
   },
 ];
 
 export const Main: React.FC = () => {
+  const [cardImg, setCardImg] = useState<string>("blackpink");
+  const history = useHistory();
+  const changeCard = (card: string) => {
+    if (card != cardImg) setCardImg(card);
+  };
   return (
-    <>
-      <Header logo="/images/logo_typo01.png" subNav={<Nav nav={subNav} />}>
-        <Nav nav={nav} />
-      </Header>
+    <PageTemplate headerLayout={headerLayout.main}>
       <main>
         <div
           className="container"
           style={{
-            backgroundColor: "#c4c4c426",
+            background: "#c4c4c426 center / contain no-repeat url('https://giphy.com/embed/xTiTniuHdUjpOlNo1q')",
             height: "100vh",
             display: "flex",
             justifyContent: "space-between",
@@ -140,16 +118,35 @@ export const Main: React.FC = () => {
             >
               Artist
             </div>
-            <Badge bColor="#C4C4C499" fColor="#000000" padding="10px 15px">
-              <a href="#">BLACKPINK</a>
+            <Badge
+              style={{ backgroundColor: "#C4C4C499", color: "#000000", padding: "10px 15px" }}
+              onClick={() => changeCard("blackpink")}
+              className="hover-evt"
+              selected={cardImg === "blackpink"}
+              bColor="#3a3a3a"
+              fColor="#ffffff"
+            >
+              BLACKPINK
             </Badge>
-            <Badge bColor="#C4C4C499" fColor="#000000" padding="10px 15px">
-              <a href="#">BTS</a>
+            <Badge
+              style={{ backgroundColor: "#C4C4C499", color: "#000000", padding: "10px 15px" }}
+              onClick={() => changeCard("bts")}
+              className="hover-evt"
+              selected={cardImg === "bts"}
+              bColor="#3a3a3a"
+              fColor="#ffffff"
+            >
+              BTS
             </Badge>
           </div>
-          <div style={{ width: "100%", height: "calc(100vh - 210px)", cursor: "pointer", overflow: "hidden" }}>
-            <img src="/images/Main/bts.jpg" alt="blackpink" width="100%" height="100%" />
-          </div>
+          <ImgLink onClick={() => history.push(`/${cardImg}`)}>
+            <div className="floatText">
+              <span>
+                <Trans i18nKey="shortcut" /> <FaArrowRight />
+              </span>
+            </div>
+            <img src={`/images/Main/${cardImg}.jpg`} alt={cardImg} width="100%" height="100%" />
+          </ImgLink>
         </div>
 
         <div className="container" style={{ height: "100vh", display: "flex", flexFlow: "column" }}>
@@ -170,13 +167,43 @@ export const Main: React.FC = () => {
             </div>
           </div>
           <Carousel slide={slide} />
-          {/* <div style={{ display: "flex", width: "100%", height: "calc(100vh - 190px)" }}>
-            {[1, 2].map((v) => (
-              <img key={v} src={`/images/Main/album${v}.png`} alt="album" width="100%" height="100%" />
-            ))}
-          </div> */}
         </div>
       </main>
-    </>
+    </PageTemplate>
   );
 };
+
+const ImgLink = styled.div`
+  width: 100%;
+  height: calc(100vh - 210px);
+  cursor: pointer;
+  overflow: hidden;
+  text-align: right;
+
+  & .floatText {
+    position: relative;
+    z-index: 100;
+    color: black;
+    top: 50px;
+    right: 40px;
+    font-size: 1.25rem;
+  }
+
+  & img {
+    filter: grayscale(1);
+  }
+
+  &:hover {
+    & img {
+      filter: unset;
+    }
+
+    & .floatText > span {
+      border-bottom: 1px solid black;
+    }
+  }
+
+  & svg {
+    vertical-align: text-top;
+  }
+`;

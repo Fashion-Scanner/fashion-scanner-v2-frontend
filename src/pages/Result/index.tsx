@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useLocation, RouteComponentProps } from "react-router";
 import styled, { keyframes, css } from "styled-components";
-import { PhotoCard, InfoCard } from "components";
+import { PhotoCard, InfoCard, PageTemplate } from "components";
+import { headerLayout } from "layout";
 
 interface ResultProps {
   memberName: string;
@@ -63,13 +64,15 @@ export const Result: React.FC<RouteComponentProps<ResultProps>> = ({ match }) =>
   };
 
   return (
-    <ResultContainer>
-      <ResultTitle isClicked={isClicked}>WHICH MEMBER ARE YOU?</ResultTitle>
-      <WhiteSpace isClicked={isClicked} />
-      <div style={{ display: "flex" }}>
-        <PhotoCard isClicked={isClicked} handleClick={handleClick} />
-        <InfoCard isClicked={isClicked} />
-      </div>
-    </ResultContainer>
+    <PageTemplate headerLayout={headerLayout.bts}>
+      <ResultContainer>
+        <ResultTitle isClicked={isClicked}>WHICH MEMBER ARE YOU?</ResultTitle>
+        <WhiteSpace isClicked={isClicked} />
+        <div style={{ display: "flex" }}>
+          <PhotoCard isClicked={isClicked} handleClick={handleClick} />
+          <InfoCard isClicked={isClicked} />
+        </div>
+      </ResultContainer>
+    </PageTemplate>
   );
 };

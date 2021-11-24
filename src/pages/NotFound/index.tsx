@@ -1,7 +1,7 @@
 import React from "react";
-import { useHistory } from "react-router";
 import styled from "styled-components";
 import { BlackButton } from "components";
+import { useHistory } from "react-router-dom";
 
 const Container = styled("div")`
   height: 100vh;
