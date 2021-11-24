@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router-dom";
 import { BlackButton } from "components";
@@ -77,6 +77,8 @@ const SharingButton = styled.img`
 `;
 
 export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => {
+  const shareLink = useRef<string>("");
+  shareLink.current = `https://www.fashion-scanner.site//bts/result/${memberName}`;
   const history = useHistory();
   useEffect(() => {
     kakaoLinkInit();
@@ -97,18 +99,18 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => 
       content: {
         title: "FASHION SCANNER",
         description: "#AI #FASHION #SCANNING #BLACKPINK #MATCHING",
-        imageUrl: "https://kmug.co.kr/data/editor/1911/1930779423_1574476579.9089.jpg",
+        imageUrl: "https://www.fashion-scanner.site/images/InfoCard/bts_logo.jpg",
         link: {
-          mobileWebUrl: `http://localhost:3000/bts/result`,
-          webUrl: `http://localhost:3000/bts/result`,
+          mobileWebUrl: shareLink.current,
+          webUrl: shareLink.current,
         },
       },
       buttons: [
         {
           title: "매칭 결과 보기",
           link: {
-            mobileWebUrl: `http://localhost:3000/bts/result`,
-            webUrl: `http://localhost:3000/bts/result`,
+            mobileWebUrl: shareLink.current,
+            webUrl: shareLink.current,
           },
         },
       ],
@@ -117,12 +119,12 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => 
 
   // 페이스북 공유하기 핸들러
   const onSharingFacebook = () => {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/bts/result`);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareLink.current}`);
   };
 
   // 트위터 공유하기 핸들러
   const onSharingTwitter = () => {
-    window.open(`https://www.twitter.com/intent/tweet?&url=http://localhost:3000/bts/result`);
+    window.open(`https://www.twitter.com/intent/tweet?&url=${shareLink.current}`);
   };
 
   const onClick = (): void => {

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { BlackButton } from "components";
 import axios from "axios";
 import FadeInSection from "components/Common/FadeInSection";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import swal from "sweetalert";
 
 const MatchSystemContainer = styled.div`
@@ -46,12 +46,13 @@ export const MatchSystem: React.FC = () => {
   const [imageSrc, setImageSrc] = useState("");
   const imageInput = useRef<HTMLInputElement | null>(null);
   const history = useHistory();
+  const { t } = useTranslation("match");
 
   const onSubmit = () => {
     if (imageFile === null) {
       swal({
-        title: "스캐닝 실패",
-        text: "업로드한 이미지 파일이 없습니다.",
+        title: t("imageUploadError.scanningFailed"),
+        text: t("imageUploadError.imageNotFound"),
         icon: "error",
       });
     }
