@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router";
 import { BlackButton } from "components";
 
 interface InfoCardProps {
   isClicked: boolean;
+  memberName: string;
+}
+
+declare global {
+  interface Window {
+    Kakao: any;
+  }
 }
 
 const fadeIn = keyframes`
@@ -67,18 +74,66 @@ const SharingButton = styled.img`
   }
 `;
 
-export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
+export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => {
   const history = useHistory();
+  console.log(memberName);
+  useEffect(() => {
+    kakaoLinkInit();
+  }, []);
 
-  if (!isClicked) {
-    return null;
-  }
+  const kakaoLinkInit = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init(process.env.REACT_APP_KAKAO_INIT_KEY);
+      }
+    }
+  };
+
+  const kakaoShare = () => {
+    window.Kakao.Link.sendDefault({
+      objectType: "feed",
+      content: {
+        title: "FASHION SCANNER",
+        description: "#AI #FASHION #SCANNING #BLACKPINK #MATCHING",
+        imageUrl: "https://kmug.co.kr/data/editor/1911/1930779423_1574476579.9089.jpg",
+        link: {
+          mobileWebUrl: `http://localhost:3000/bts/result`,
+          webUrl: `http://localhost:3000/bts/result`,
+        },
+      },
+      buttons: [
+        {
+          title: "매칭 결과 보기",
+          link: {
+            mobileWebUrl: `http://localhost:3000/bts/result`,
+            webUrl: `http://localhost:3000/bts/result`,
+          },
+        },
+      ],
+    });
+  };
+
+  // 페이스북 공유하기 핸들러
+  const onSharingFacebook = () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/bts/result`);
+  };
+
+  // 트위터 공유하기 핸들러
+  const onSharingTwitter = () => {
+    window.open(`https://www.twitter.com/intent/tweet?&url=http://localhost:3000/bts/result`);
+  };
 
   const onClick = (): void => {
     history.push({
       pathname: "/bts/match",
     });
   };
+
+  if (!isClicked) {
+    return null;
+  }
+
   return (
     <Container>
       <span>당신은 패완얼의 정석 뷔</span>
@@ -91,9 +146,10 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
         <SharingButton
           src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
           alt="kakao"
+          onClick={kakaoShare}
         />
-        <SharingButton src="/images/Match/twitter_logo.png" alt="twitter" />
-        <SharingButton src="/images/Match/facebook_logo.png" alt="facebook" />
+        <SharingButton src="/images/InfoCard/twitter_logo.png" alt="twitter" onClick={onSharingTwitter} />
+        <SharingButton src="/images/InfoCard/facebook_logo.png" alt="facebook" onClick={onSharingFacebook} />
       </SharingButtonContainer>
     </Container>
   );

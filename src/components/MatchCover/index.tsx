@@ -11,7 +11,6 @@ const CoverContainer = styled.div`
 
 const CoverBackground = styled.img`
   filter: grayscale(100%);
-  opacity: 0.8;
   height: 100vh;
   width: 100vw;
 `;

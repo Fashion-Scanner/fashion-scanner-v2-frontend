@@ -1,8 +1,12 @@
 import { PageTemplate } from "components";
 import { headerLayout } from "layout";
 import React, { useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import styled from "styled-components";
+
+interface Location {
+  memberName: string;
+}
 
 const Container = styled("div")`
   height: 100vh;
@@ -70,11 +74,25 @@ const LoadingImg = styled("img")`
 
 export const Loading: React.FC = () => {
   const history = useHistory();
+  const location = useLocation<Location>();
+  const memberName = location.state ? location.state.memberName : null;
   useEffect(() => {
     setTimeout(() => {
-      history.push({
-        pathname: "/bts/result",
-      });
+      if (memberName) {
+        history.push({
+          pathname: "/bts/result",
+          state: {
+            memberName: memberName,
+          },
+        });
+      } else {
+        history.push({
+          pathname: "/bts/notfound",
+          state: {
+            from: history.location.pathname,
+          },
+        });
+      }
     }, 3000);
   });
 

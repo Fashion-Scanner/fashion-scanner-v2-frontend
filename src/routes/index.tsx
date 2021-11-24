@@ -16,6 +16,7 @@ const RootRouter: React.FC = () => {
           <Route exact path="/bts/match" component={Match} />
           <Route exact path="/bts/loading" component={Loading} />
           <Route exact path="/bts/result" component={Result} />
+          <Route exact path="/bts/result/:memberName" component={Result} />
           <Route exact path="/bts/notfound" component={NotFound} />
           <Route exact path="/faq" component={Main} />
           <Redirect from="*" to="/bts/notfound" />
