@@ -7,11 +7,9 @@ export const Match: React.FC = () => {
 
   return (
     <PageTemplate headerLayout={headerLayout.bts} style={{ marginTop: 0 }}>
-      <div style={{ height: "100vh" }}>
-        <MatchCover matchExampleComponent={matchExampleRef} />
-        <MatchExample ref={matchExampleRef} />
-        <MatchSystem />
-      </div>
+      <MatchCover matchExampleComponent={matchExampleRef} />
+      <MatchExample ref={matchExampleRef} />
+      <MatchSystem />
     </PageTemplate>
   );
 };

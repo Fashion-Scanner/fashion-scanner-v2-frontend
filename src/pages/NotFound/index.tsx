@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { BlackButton } from "components";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+
+interface Location {
+  from: string;
+}
 
 const Container = styled("div")`
   height: 100vh;
@@ -31,10 +35,15 @@ const Content = styled("p")`
 
 export const NotFound: React.FC = () => {
   const history = useHistory();
+  const location = useLocation<Location>();
   const onClick = () => {
-    history.push({
-      pathname: "/bts/match",
-    });
+    if (location.state) {
+      history.push({
+        pathname: "/bts/match",
+      });
+    } else {
+      history.goBack();
+    }
   };
   return (
     <Container>

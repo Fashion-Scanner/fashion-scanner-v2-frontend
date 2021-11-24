@@ -5,6 +5,7 @@ import { BlackButton } from "components";
 
 interface InfoCardProps {
   isClicked: boolean;
+  memberName: string;
 }
 
 declare global {
@@ -73,9 +74,9 @@ const SharingButton = styled.img`
   }
 `;
 
-export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
+export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => {
   const history = useHistory();
-
+  console.log(memberName);
   useEffect(() => {
     kakaoLinkInit();
   }, []);
