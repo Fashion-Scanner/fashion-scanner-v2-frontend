@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-// import axios from "axios";
+import axios from "axios";
 
 interface IBar {
   top: string;
@@ -16,15 +16,18 @@ interface LookBookHeaderProps {
 }
 
 const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
+  const [koClothes, setKoClothes] = useState([]);
+  const [enClothes, setEnClothes] = useState([]);
   const [currentCardId, setCurrentCardId] = useState<number>(1);
   const MemberPhotoUrl = (id: number) => `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${id}.png`;
   const MemberClothUrl = `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${currentCardId}_1.png`;
 
   useEffect(() => {
-    // axios
-    //   .get("https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=v")
-    //   .then((res) => console.log(res.data));
-  }, [currentCardId]);
+    axios.get("https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=v").then((res) => {
+      setKoClothes(res.data.ko.clothes);
+      setEnClothes(res.data.en.clothes);
+    });
+  }, []);
 
   const onClickLeftArrow = () => {
     setCurrentCardId((prev) => (prev > 1 ? prev - 1 : prev - 1 + 8));
@@ -45,6 +48,8 @@ const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
         <Arrow alt="left_arrow" src="/images/Lookbook/left_arrow.png" onClick={onClickLeftArrow} />
         <LookBookContent>
           <ContentTable>
+            {koClothes.map(() => null)}
+            {enClothes.map(() => null)}
             <Label>BRAND</Label>
             <Content>구찌</Content>
             <Label>CATEGORY</Label>
