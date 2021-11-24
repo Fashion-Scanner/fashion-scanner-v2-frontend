@@ -5,6 +5,7 @@ import { HiMail } from "react-icons/hi";
 import { ImPhone, ImInstagram } from "react-icons/im";
 import { Badge } from "components";
 import React, { HTMLAttributes } from "react";
+import { Trans } from "react-i18next";
 
 export const Footer: React.FC<HTMLAttributes<HTMLElement>> = (props) => {
   return (
@@ -19,7 +20,8 @@ export const Footer: React.FC<HTMLAttributes<HTMLElement>> = (props) => {
               <Badge style={{ color: "#ffffff" }}>
                 <GiPositionMarker />
               </Badge>
-              강남구 선릉로 433 세방빌딩 6층
+              <Trans i18nKey="footer.address" />
+              {/* 강남구 선릉로 433 세방빌딩 6층 */}
             </li>
             <li>
               <Badge style={{ color: "#ffffff" }}>
@@ -41,7 +43,10 @@ export const Footer: React.FC<HTMLAttributes<HTMLElement>> = (props) => {
               <a href="#">ABOUT US</a>
             </li>
             <li>
-              <a href="#">자주묻는 질문</a>
+              <a href="#">
+                <Trans i18nKey="footer.faq" />
+                {/*자주묻는 질문*/}
+              </a>
             </li>
           </ul>
           <ul>

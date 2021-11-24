@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Badge, Carousel, PageTemplate } from "components";
 import { headerLayout } from "layout";
 import { theme } from "styles/Theme";
 import { FaArrowRight } from "react-icons/fa";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Trans } from "react-i18next";
+import FadeInSection from "components/Common/FadeInSection";
+import { FaChevronDown } from "react-icons/fa";
 
 const slide = [
   {
@@ -37,6 +39,7 @@ const slide = [
 export const Main: React.FC = () => {
   const [cardImg, setCardImg] = useState<string>("blackpink");
   const history = useHistory();
+  const ref = useRef<null | HTMLDivElement>(null);
   const changeCard = (card: string) => {
     if (card != cardImg) setCardImg(card);
   };
@@ -46,7 +49,8 @@ export const Main: React.FC = () => {
         <div
           className="container"
           style={{
-            background: "#c4c4c426 center / contain no-repeat url('https://giphy.com/embed/xTiTniuHdUjpOlNo1q')",
+            background:
+              "#c4c4c426 center / contain no-repeat url('https://media.giphy.com/media/26BRyql7J3iOx875u/giphy.gif')",
             height: "100vh",
             display: "flex",
             justifyContent: "space-between",
@@ -56,7 +60,7 @@ export const Main: React.FC = () => {
         >
           <div
             style={{
-              fontFamily: theme.font.roboto,
+              fontFamily: theme.font.rhodiumLibre,
               fontWeight: 500,
               fontSize: 35,
               color: "#00000014",
@@ -70,10 +74,15 @@ export const Main: React.FC = () => {
           </div>
           <div style={{ height: "70%" }}>
             {/* <img src="/images/Main/header1.png" alt="magazine" width="100%" /> */}
-            <img src="/images/Main/header2.png" alt="magazine" style={{ width: "100%", height: "100%" }} />
+            <img
+              src="/images/Main/header2.png"
+              alt="magazine"
+              style={{ width: "100%", height: "100%", filter: "drop-shadow(15px 15px 5px #000000ee)" }}
+            />
           </div>
           <div
             style={{
+              fontFamily: theme.font.rhodiumLibre,
               fontSize: "3.125em",
               fontWeight: 400,
               color: "#2e2d2e",
@@ -85,10 +94,11 @@ export const Main: React.FC = () => {
               width: "100%",
             }}
           >
-            Discover the New trends
+            <FadeInSection>Discover the New trends</FadeInSection>
           </div>
           <div
             style={{
+              fontFamily: "Primetime",
               position: "absolute",
               top: "45%",
               left: "15%",
@@ -98,13 +108,31 @@ export const Main: React.FC = () => {
               zIndex: 100,
             }}
           >
-            FASHION
-            <br />
-            SCANNER
+            <FadeSideBox from="0px 30px" to="0px">
+              FASHION
+            </FadeSideBox>
+            <FadeSideBox from="0px" to="0px 30px 0px">
+              SCANNER
+            </FadeSideBox>
+          </div>
+
+          <div
+            style={{
+              position: "absolute",
+              top: "90%",
+              left: "50%",
+              transform: "translate(-50%, 0%)",
+              cursor: "pointer",
+            }}
+            onClick={() => ref.current?.scrollIntoView({ behavior: "smooth" })}
+          >
+            <FadeSideBox from="0px" to="30px 0px 0px" option="infinite">
+              <FaChevronDown size="3em" />
+            </FadeSideBox>
           </div>
         </div>
 
-        <div className="container" style={{ height: "100vh", display: "flex", flexFlow: "column" }}>
+        <div className="container" style={{ height: "100vh", display: "flex", flexFlow: "column" }} ref={ref}>
           <div style={{ display: "flex", alignItems: "center", padding: "80px 50px 20px" }}>
             <div
               style={{
@@ -206,4 +234,25 @@ const ImgLink = styled.div`
   & svg {
     vertical-align: text-top;
   }
+`;
+
+const fadeSide = (from: string, to: string) => keyframes`
+  from {
+    opacity: 0;
+    padding: ${from};    
+  }
+  to {
+    opacity: 1;
+    padding: ${to};
+  }
+`;
+
+interface FadeSideBoxPropType {
+  readonly from: string;
+  readonly to: string;
+  readonly option?: string;
+}
+
+const FadeSideBox = styled.div<FadeSideBoxPropType>`
+  animation: ${(props) => fadeSide(props.from, props.to)} 2s ease-in-out ${(props) => props.option || ""} forwards;
 `;

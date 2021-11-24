@@ -1,3 +1,7 @@
 {
-  "shortcut": "go"
+  "shortcut": "Go",
+  "footer": {
+    "address": "6F 433, Seolleung-ro, Gangnam-gu, Seoul, Republic of Korea",
+    "faq": "FAQ"
+  }
 }
