@@ -73,15 +73,22 @@ const LoadingImg = styled("img")`
 export const Loading: React.FC = () => {
   const history = useHistory();
   const location = useLocation<Location>();
+  const memberName = location.state ? location.state.memberName : null;
   useEffect(() => {
     setTimeout(() => {
-      history.push({
-        pathname: "/bts/result",
-        state: {
-          memberName: location.state.memberName,
-        },
-      });
-    }, 4000);
+      if (memberName) {
+        history.push({
+          pathname: "/bts/result",
+          state: {
+            memberName: memberName,
+          },
+        });
+      } else {
+        history.push({
+          pathname: "/bts/notfound",
+        });
+      }
+    }, 3000);
   });
 
   return (

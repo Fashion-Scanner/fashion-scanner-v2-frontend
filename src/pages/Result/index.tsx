@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import React, { useState, useRef } from "react";
+import { useLocation, RouteComponentProps } from "react-router";
 import styled, { keyframes, css } from "styled-components";
 import { PhotoCard, InfoCard } from "components";
+
+interface ResultProps {
+  memberName: string;
+}
 
 interface Location {
   memberName: string;
@@ -47,12 +51,13 @@ const WhiteSpace = styled.div`
   height: 70px;
 `;
 
-export const Result: React.FC = () => {
+export const Result: React.FC<RouteComponentProps<ResultProps>> = ({ match }) => {
   const [isClicked, setIsClicked] = useState(false);
   const location = useLocation<Location>();
-  useEffect(() => {
-    console.log(location.state.memberName);
-  }, [location]);
+  const memberName = useRef<string | undefined>();
+  memberName.current = (location.state && location.state.memberName) || (match.params && match.params.memberName);
+  console.log(memberName);
+
   const handleClick = (): void => {
     setIsClicked(!isClicked);
   };

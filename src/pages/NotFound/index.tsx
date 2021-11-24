@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { BlackButton } from "components";
 
@@ -11,7 +12,7 @@ const Container = styled("div")`
 `;
 
 const Img = styled("img")`
-  width 600px;
+  width: 50vw;
 `;
 
 const Title = styled("p")`
@@ -29,12 +30,18 @@ const Content = styled("p")`
 `;
 
 export const NotFound: React.FC = () => {
+  const history = useHistory();
+  const onClick = () => {
+    history.push({
+      pathname: "/bts/match",
+    });
+  };
   return (
     <Container>
       <Img src="/images/NotFound/not-found-img.jpg" alt="not-found-img" />
       <Title>잠시 후 다시 시도해 주세요</Title>
       <Content>같은 문제가 계속되면 다른 이미지를 사용해주세요.</Content>
-      <BlackButton>이전으로 돌아가기</BlackButton>
+      <BlackButton onClick={onClick}>이전으로 돌아가기</BlackButton>
     </Container>
   );
 };
