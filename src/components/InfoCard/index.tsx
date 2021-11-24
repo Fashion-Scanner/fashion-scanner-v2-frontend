@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { BlackButton } from "components";
+import { Trans } from "react-i18next";
 
 interface InfoCardProps {
   isClicked: boolean;
@@ -42,6 +43,7 @@ const Container = styled.div`
   margin-left: 100px;
   span {
     font-size: 20px;
+    font-weight: bold;
   }
 
   span + span {
@@ -76,7 +78,6 @@ const SharingButton = styled.img`
 
 export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => {
   const history = useHistory();
-  console.log(memberName);
   useEffect(() => {
     kakaoLinkInit();
   }, []);
@@ -126,7 +127,10 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => 
 
   const onClick = (): void => {
     history.push({
-      pathname: "/bts/match",
+      pathname: "/bts/lookbook",
+      state: {
+        memberName: memberName,
+      },
     });
   };
 
@@ -136,12 +140,25 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => 
 
   return (
     <Container>
-      <span>당신은 패완얼의 정석 뷔</span>
-      <span>남다른 패션센스를 자랑하지만</span>
-      <span>가끔 얼굴 때문에 그 센스가 묻히는군요</span>
-      <span>뷔의 룩북을 참고해보세요!</span>
-      <StyledButton onClick={onClick}>룩북 바로가기</StyledButton>
-      <p>공유하기</p>
+      {console.log(<Trans i18nKey="result:btn1" />)}
+      <span>
+        <Trans i18nKey={`result:info.${memberName}.t1`} />
+      </span>
+      <span>
+        <Trans i18nKey={`result:info.${memberName}.t2`} />
+      </span>
+      <span>
+        <Trans i18nKey={`result:info.${memberName}.t3`} />
+      </span>
+      <span>
+        <Trans i18nKey={`result:info.${memberName}.t4`} />
+      </span>
+      <StyledButton onClick={onClick}>
+        <Trans i18nKey="result:btn1" />
+      </StyledButton>
+      <p>
+        <Trans i18nKey="result:btn2" />
+      </p>
       <SharingButtonContainer>
         <SharingButton
           src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"

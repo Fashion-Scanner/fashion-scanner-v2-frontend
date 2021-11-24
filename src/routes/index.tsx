@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { IconContext } from "react-icons/lib";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { Main, BTSMain, LookbookPage, Match, Result, Loading, NotFound } from "pages";
+import { Main, BTSMain, LookbookPage, Match, Result, Loading, NotFound, Failure } from "pages";
 
 const RootRouter: React.FC = () => {
   useTranslation();
@@ -18,6 +18,7 @@ const RootRouter: React.FC = () => {
           <Route exact path="/bts/result" component={Result} />
           <Route exact path="/bts/result/:memberName" component={Result} />
           <Route exact path="/bts/notfound" component={NotFound} />
+          <Route exact path="/bts/failure" component={Failure} />
           <Route exact path="/faq" component={Main} />
           <Redirect from="*" to="/bts/notfound" />
         </Switch>

@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BlackButton } from "components";
-import { useHistory, useLocation } from "react-router-dom";
-
-interface Location {
-  from: string;
-}
+import { useHistory } from "react-router-dom";
 
 const Container = styled("div")`
   height: 100vh;
@@ -16,41 +12,40 @@ const Container = styled("div")`
 `;
 
 const Img = styled("img")`
-  width: 50vw;
+  width: 30vw;
 `;
 
 const Title = styled("p")`
-  background-color: black;
-  color: white;
-  padding: 10px;
-  font-size: 40px;
-  margin: 30px 0;
+  text-align: center;
+  line-height: 1.2;
+  color: #de989c;
+  font-size: 3rem;
+  margin: 3rem 0 0 0;
 `;
 
 const Content = styled("p")`
-  color: gray;
-  font-size: 15px;
-  margin: 0 0 50px 0;
+  color: #de989c;
+  font-size: 1.3rem;
+  margin: 2.5rem 0 4rem 0;
 `;
 
 export const NotFound: React.FC = () => {
   const history = useHistory();
-  const location = useLocation<Location>();
   const onClick = () => {
-    if (location.state) {
-      history.push({
-        pathname: "/bts/match",
-      });
-    } else {
-      history.goBack();
-    }
+    history.push({
+      pathname: "/bts",
+    });
   };
   return (
     <Container>
-      <Img src="/images/NotFound/not-found-img.jpg" alt="not-found-img" />
-      <Title>잠시 후 다시 시도해 주세요</Title>
-      <Content>같은 문제가 계속되면 다른 이미지를 사용해주세요.</Content>
-      <BlackButton onClick={onClick}>이전으로 돌아가기</BlackButton>
+      <Img src="/images/Failure/failure.jpg" alt="failure-img" />
+      <Title>
+        Oops!
+        <br />
+        페이지를 찾을 수 없습니다.
+      </Title>
+      <Content>입력하신 주소를 다시 한번 확인해 주세요.</Content>
+      <BlackButton onClick={onClick}>메인 페이지로 가기</BlackButton>
     </Container>
   );
 };

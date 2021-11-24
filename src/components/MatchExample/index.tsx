@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import FadeInSection from "components/Common/FadeInSection";
+import { Trans } from "react-i18next";
 
 interface CardImageProps {
   width?: string;
@@ -58,6 +59,7 @@ const ExampleTitle = styled.div`
 
 const CardNumber = styled.div`
   font-size: 4rem;
+  font-weight: bold;
 `;
 
 const CardImage = styled.img`
@@ -92,20 +94,14 @@ export const MatchExample = React.forwardRef<HTMLDivElement>(function MatchExamp
             <CardNumber>01</CardNumber>
             <CardImage width="80" src="/images/Match/ex_good_01.jpg" alt="ex-good-01" />
             <CardInnerText>
-              정면을 보고 바르게 선 자세로
-              <br />
-              찍은 사진일 수록 분석의 정확도가
-              <br />
-              분석의 정확도가 높아집니다.
+              <Trans i18nKey="match:goodExample.t1" />
             </CardInnerText>
           </ExampleCard>
           <ExampleCard width="22" hasBorder style={{ padding: "15vh 0 0 3%" }}>
             <div style={{ display: "flex" }}>
               <CardNumber>02</CardNumber>
               <CardInnerText style={{ display: "flex", alignItems: "end", marginLeft: "2%" }}>
-                배경은 희색에
-                <br />
-                가까울 수록 좋습니다.
+                <Trans i18nKey="match:goodExample.t2" />
               </CardInnerText>
             </div>
             <CardImage width="65" src="/images/Match/ex_good_02.jpg" alt="ex-good-02" />
@@ -114,9 +110,7 @@ export const MatchExample = React.forwardRef<HTMLDivElement>(function MatchExamp
             <CardNumber>03</CardNumber>
             <CardImage width="80" src="/images/Match/ex_good_03.jpg" alt="ex-good-03" />
             <CardInnerText>
-              거울 셀카보다는 다른 사람이
-              <br />
-              찍어준 사진을 활용해 보세요.
+              <Trans i18nKey="match:goodExample.t3" />
             </CardInnerText>
           </ExampleCard>
         </ExampleBox>
@@ -127,9 +121,7 @@ export const MatchExample = React.forwardRef<HTMLDivElement>(function MatchExamp
             <div style={{ display: "flex" }}>
               <CardNumber>01</CardNumber>
               <CardInnerText style={{ display: "flex", alignItems: "end", marginLeft: "2%" }}>
-                여러 명이 함께 찍은 사진은
-                <br />
-                분석할 수 없습니다.
+                <Trans i18nKey="match:badExample.t1" />
               </CardInnerText>
             </div>
             <CardImage height="40" src="/images/Match/ex_bad_01.jpg" alt="ex-bad-01" />
@@ -138,15 +130,7 @@ export const MatchExample = React.forwardRef<HTMLDivElement>(function MatchExamp
               <div style={{ marginLeft: "5%" }}>
                 <CardNumber>02</CardNumber>
                 <CardInnerText style={{ marginTop: "30%" }}>
-                  옷의 일부만
-                  <br />
-                  보이는 사진은
-                  <br />
-                  제대로
-                  <br />
-                  분석 할 수
-                  <br />
-                  없습니다.
+                  <Trans i18nKey="match:badExample.t2" />
                 </CardInnerText>
               </div>
             </div>
@@ -154,11 +138,7 @@ export const MatchExample = React.forwardRef<HTMLDivElement>(function MatchExamp
           <ExampleCard width="20" hasBorder style={{ padding: "0 3%" }}>
             <CardNumber>03</CardNumber>
             <CardInnerText style={{ margin: "5% 0" }}>
-              배경색이 다양할수록
-              <br />
-              분석의 정확도가
-              <br />
-              떨어집니다.
+              <Trans i18nKey="match:badExample.t3" />
             </CardInnerText>
             <CardImage height="65" src="/images/Match/ex_bad_03.jpg" alt="ex-bad-03" />
           </ExampleCard>
@@ -166,9 +146,7 @@ export const MatchExample = React.forwardRef<HTMLDivElement>(function MatchExamp
             <CardNumber>04</CardNumber>
             <CardImage height="70" src="/images/Match/ex_bad_04.jpg" alt="ex-bad-04" />
             <CardInnerText>
-              흑백 사진은 분석 시
-              <br />
-              정확한 결과를 얻기 힘듭니다.
+              <Trans i18nKey="match:badExample.t4" />
             </CardInnerText>
           </ExampleCard>
           <ExampleCard width="15" style={{ display: "flex", justifyContent: "end" }}>
