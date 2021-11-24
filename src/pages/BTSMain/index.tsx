@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 // import { BsGlobe } from "react-icons/bs";
 import { FaArrowRight } from "react-icons/fa";
 import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { Trans } from "react-i18next";
 
 const url = (name: string, wrap = false) =>
   `${wrap ? "url(" : ""}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ")" : ""}`;
@@ -36,34 +37,6 @@ export const BTSMain: React.FC = () => {
               backgroundSize: "cover",
             }}
           />
-          {/* <ParallaxLayer offset={0.1} speed={0.5} style={{ opacity: 0.8 }}>
-            <img
-              src="https://media.giphy.com/media/PCq2Nw7I8q4gsOLyWv/giphy.gif"
-              alt="git"
-              style={{ marginLeft: "5%" }}
-            />
-          </ParallaxLayer> */}
-          {/* <ParallaxLayer offset={0.3} speed={-0.3} style={{ pointerEvents: "none" }}>
-            <img
-              src={"https://media.giphy.com/media/P9XHhiEVVyXHTtjQjL/giphy.gif"}
-              style={{ width: "15%", marginLeft: "70%" }}
-            />
-          </ParallaxLayer> */}
-
-          {/* <ParallaxLayer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
-            <img src={url("cloud")} style={{ display: "block", width: "20%", marginLeft: "55%" }} />
-            <img src={url("cloud")} style={{ display: "block", width: "10%", marginLeft: "15%" }} />
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1.75} speed={0.5} style={{ opacity: 0.1 }}>
-            <img src={url("cloud")} style={{ display: "block", width: "20%", marginLeft: "70%" }} />
-            <img src={url("cloud")} style={{ display: "block", width: "20%", marginLeft: "40%" }} />
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1} speed={0.2} style={{ opacity: 0.2 }}>
-            <img src={url("cloud")} style={{ display: "block", width: "10%", marginLeft: "10%" }} />
-            <img src={url("cloud")} style={{ display: "block", width: "20%", marginLeft: "75%" }} />
-          </ParallaxLayer> */}
 
           <ParallaxLayer offset={0} speed={-0.5} style={{ display: "flex", alignItems: "center", paddingTop: 60 }}>
             <div
@@ -173,7 +146,8 @@ export const BTSMain: React.FC = () => {
                     margin: "0px 20px",
                   }}
                 >
-                  멤버를 클릭하여 룩북을 확인해보세요.
+                  <Trans i18nKey="bts_main:subtitle1" />
+                  {/* 멤버를 클릭하여 룩북을 확인해보세요. */}
                 </div>
               </div>
               <ImgBox>
@@ -240,21 +214,6 @@ export const BTSMain: React.FC = () => {
                     height="100%"
                   />
                 </NavLink>
-
-                {/* <div
-                  style={{
-                    backgroundColor: "#811FE2",
-                    color: "white",
-                    fontWeight: 700,
-                    textAlign: "center",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "2em",
-                  }}
-                >
-                  <img src="/images/BTSMain/bts_logo.png" alt="logo" />
-                </div> */}
               </ImgBox>
             </Container>
           </ParallaxLayer>
@@ -286,9 +245,6 @@ export const BTSMain: React.FC = () => {
               alignItems: "center",
               justifyContent: "flex-end",
               padding: "5%",
-              // backgroundSize: "100%",
-              // backgroundPosition: "center",
-              // backgroundImage: "url(/images/BTSMain/Polygon01.png)",
             }}
           >
             <p>
@@ -314,12 +270,13 @@ export const BTSMain: React.FC = () => {
             <img src={"/images/BTSMain/bts_bottom.png"} style={{ width: "50%" }} />
             <FloatBox>
               <div>
-                본인이 평소 입는 스타일의 옷을 업로드해보세요.
-                <br /> AI가 어떤 멤버와 패션 성향이 가장 비슷한지 알려드립니다.
+                <Trans i18nKey="bts_main:subtitle2" />
+                {/* 본인이 평소 입는 스타일의 옷을 업로드해보세요.
+                <br /> AI가 어떤 멤버와 패션 성향이 가장 비슷한지 알려드립니다. */}
               </div>
               <NavLink to="/bts/match" className="floatText">
                 <span>
-                  바로가기 <FaArrowRight />
+                  <Trans i18nKey="shortcut" /> {/*바로가기*/} <FaArrowRight />
                 </span>
               </NavLink>
             </FloatBox>

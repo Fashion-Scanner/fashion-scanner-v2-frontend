@@ -2,7 +2,7 @@ import { useRef, useEffect, useCallback, useState } from "react";
 import styled, { css } from "styled-components";
 
 interface ScrollFadeInProps {
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | React.ReactNode;
   delay?: number;
 }
 
