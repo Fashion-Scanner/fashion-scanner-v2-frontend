@@ -4,9 +4,16 @@ import LookbookMain from "components/Lookbook/LookbookMain";
 import LookbookPicker from "components/Lookbook/LookbookPicker";
 import { PageTemplate } from "components";
 import { headerLayout } from "layout";
+import { useLocation } from "react-router-dom";
+
+interface LocationType {
+  memberName: string;
+}
 
 export const LookbookPage: React.FC = () => {
-  const [memberName, setMemberName] = useState<string>("jungkook");
+  const location = useLocation<LocationType>();
+  const getMemberName = () => location.state?.memberName || "jungkook";
+  const [memberName, setMemberName] = useState<string>(getMemberName());
   return (
     <PageTemplate headerLayout={headerLayout.bts}>
       <LookBookHeader memberName={memberName} />

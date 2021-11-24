@@ -20,6 +20,9 @@ export const Header: React.FC<HeaderPropType> = ({ color, logo, subNav, children
     window.onscroll = () => {
       window.scrollY >= 80 ? setEv(1) : setEv(0);
     };
+    return () => {
+      window.onscroll = null;
+    };
   }, []);
   return (
     <StyledHeader color={color} elevation={ev}>

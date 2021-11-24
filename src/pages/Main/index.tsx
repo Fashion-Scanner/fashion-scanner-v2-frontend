@@ -2,36 +2,40 @@ import React, { useState } from "react";
 import { Badge, Carousel, PageTemplate } from "components";
 import { headerLayout } from "layout";
 import { theme } from "styles/Theme";
+import { FaArrowRight } from "react-icons/fa";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const slide = [
   {
     id: 0,
-    img: "/images/Main/album1.png",
+    img: "/images/Main/blackpink_1.jpg",
   },
   {
     id: 1,
-    img: "/images/Main/album2.png",
+    img: "/images/Main/bts_1.jpg",
   },
   {
     id: 2,
-    img: "/images/Main/album1.png",
+    img: "/images/Main/blackpink_2.jpg",
   },
   {
     id: 3,
-    img: "/images/Main/album2.png",
+    img: "/images/Main/bts_3.jpg",
   },
   {
     id: 4,
-    img: "/images/Main/album1.png",
+    img: "/images/Main/blackpink_4.png",
   },
   {
     id: 5,
-    img: "/images/Main/album2.png",
+    img: "/images/Main/bts_4.jpg",
   },
 ];
 
 export const Main: React.FC = () => {
   const [cardImg, setCardImg] = useState<string>("blackpink");
+  const history = useHistory();
   const changeCard = (card: string) => {
     if (card != cardImg) setCardImg(card);
   };
@@ -41,7 +45,7 @@ export const Main: React.FC = () => {
         <div
           className="container"
           style={{
-            backgroundColor: "#c4c4c426",
+            background: "#c4c4c426 center / contain no-repeat url('https://giphy.com/embed/xTiTniuHdUjpOlNo1q')",
             height: "100vh",
             display: "flex",
             justifyContent: "space-between",
@@ -116,19 +120,32 @@ export const Main: React.FC = () => {
             <Badge
               style={{ backgroundColor: "#C4C4C499", color: "#000000", padding: "10px 15px" }}
               onClick={() => changeCard("blackpink")}
+              className="hover-evt"
+              selected={cardImg === "blackpink"}
+              bColor="#3a3a3a"
+              fColor="#ffffff"
             >
               BLACKPINK
             </Badge>
             <Badge
               style={{ backgroundColor: "#C4C4C499", color: "#000000", padding: "10px 15px" }}
               onClick={() => changeCard("bts")}
+              className="hover-evt"
+              selected={cardImg === "bts"}
+              bColor="#3a3a3a"
+              fColor="#ffffff"
             >
               BTS
             </Badge>
           </div>
-          <div style={{ width: "100%", height: "calc(100vh - 210px)", cursor: "pointer", overflow: "hidden" }}>
+          <ImgLink onClick={() => history.push(`/${cardImg}`)}>
+            <div className="floatText">
+              <span>
+                바로가기 <FaArrowRight style={{ verticalAlign: "text-top" }} />
+              </span>
+            </div>
             <img src={`/images/Main/${cardImg}.jpg`} alt={cardImg} width="100%" height="100%" />
-          </div>
+          </ImgLink>
         </div>
 
         <div className="container" style={{ height: "100vh", display: "flex", flexFlow: "column" }}>
@@ -154,3 +171,38 @@ export const Main: React.FC = () => {
     </PageTemplate>
   );
 };
+
+const ImgLink = styled.div`
+  width: 100%;
+  height: calc(100vh - 210px);
+  cursor: pointer;
+  overflow: hidden;
+  text-align: right;
+
+  & .floatText {
+    position: relative;
+    z-index: 100;
+    color: black;
+    top: 50px;
+    right: 40px;
+    font-size: 1.25rem;
+  }
+
+  & img {
+    filter: grayscale(1);
+  }
+
+  &:hover {
+    & img {
+      filter: unset;
+    }
+
+    & .floatText > span {
+      border-bottom: 1px solid black;
+    }
+  }
+
+  & svg {
+    vertical-align: text-top;
+  }
+`;

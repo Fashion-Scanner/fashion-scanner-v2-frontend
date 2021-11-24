@@ -30,6 +30,7 @@ export const PageTemplate: React.FC<PageTemplatePropType> = ({ headerLayout, chi
   );
 };
 
-const StyledPageTemplate = styled.div`
+const StyledPageTemplate = styled.main`
   margin-top: 60px;
+  // background-color: #110f15;
 `;
