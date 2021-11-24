@@ -12,7 +12,7 @@ interface LocationType {
 
 export const LookbookPage: React.FC = () => {
   const location = useLocation<LocationType>();
-  const getMemberName = () => location.state?.memberName || "jungkook";
+  const getMemberName = () => location.state?.memberName.toUpperCase() || "JUNGKOOK";
   const [memberName, setMemberName] = useState<string>(getMemberName());
   return (
     <PageTemplate headerLayout={headerLayout.bts}>
