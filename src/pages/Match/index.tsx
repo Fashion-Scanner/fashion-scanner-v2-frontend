@@ -5,7 +5,7 @@ export const Match: React.FC = () => {
   const matchExampleRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <MatchCover matchExampleComponent={matchExampleRef} />
       <MatchExample ref={matchExampleRef} />
       <MatchSystem />

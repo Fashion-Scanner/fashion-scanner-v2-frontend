@@ -95,7 +95,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
       content: {
         title: "FASHION SCANNER",
         description: "#AI #FASHION #SCANNING #BLACKPINK #MATCHING",
-        imageUrl: "http://localhost:3000/images/PhotoCard/photo_card_cover_1.jpeg",
+        imageUrl: "https://kmug.co.kr/data/editor/1911/1930779423_1574476579.9089.jpg",
         link: {
           mobileWebUrl: `http://localhost:3000/bts/result`,
           webUrl: `http://localhost:3000/bts/result`,
@@ -113,15 +113,26 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
     });
   };
 
-  if (!isClicked) {
-    return null;
-  }
+  // 페이스북 공유하기 핸들러
+  const onSharingFacebook = () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/bts/result`);
+  };
+
+  // 트위터 공유하기 핸들러
+  const onSharingTwitter = () => {
+    window.open(`https://www.twitter.com/intent/tweet?&url=http://localhost:3000/bts/result`);
+  };
 
   const onClick = (): void => {
     history.push({
       pathname: "/bts/match",
     });
   };
+
+  if (!isClicked) {
+    return null;
+  }
+
   return (
     <Container>
       <span>당신은 패완얼의 정석 뷔</span>
@@ -136,8 +147,8 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked }) => {
           alt="kakao"
           onClick={kakaoShare}
         />
-        <SharingButton src="/images/InfoCard/twitter_logo.png" alt="twitter" />
-        <SharingButton src="/images/InfoCard/facebook_logo.png" alt="facebook" />
+        <SharingButton src="/images/InfoCard/twitter_logo.png" alt="twitter" onClick={onSharingTwitter} />
+        <SharingButton src="/images/InfoCard/facebook_logo.png" alt="facebook" onClick={onSharingFacebook} />
       </SharingButtonContainer>
     </Container>
   );

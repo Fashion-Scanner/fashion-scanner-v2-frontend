@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import styled, { keyframes, css } from "styled-components";
 import { PhotoCard, InfoCard } from "components";
+
+interface Location {
+  memberName: string;
+}
 
 const fadeIn = keyframes`
   from {
@@ -44,7 +49,10 @@ const WhiteSpace = styled.div`
 
 export const Result: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
-
+  const location = useLocation<Location>();
+  useEffect(() => {
+    console.log(location.state.memberName);
+  }, [location]);
   const handleClick = (): void => {
     setIsClicked(!isClicked);
   };

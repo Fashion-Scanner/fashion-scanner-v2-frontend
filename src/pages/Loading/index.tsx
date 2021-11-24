@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import styled from "styled-components";
+
+interface Location {
+  memberName: string;
+}
 
 const Container = styled("div")`
   height: 100vh;
@@ -68,12 +72,16 @@ const LoadingImg = styled("img")`
 
 export const Loading: React.FC = () => {
   const history = useHistory();
+  const location = useLocation<Location>();
   useEffect(() => {
     setTimeout(() => {
       history.push({
         pathname: "/bts/result",
+        state: {
+          memberName: location.state.memberName,
+        },
       });
-    }, 3000);
+    }, 4000);
   });
 
   return (
