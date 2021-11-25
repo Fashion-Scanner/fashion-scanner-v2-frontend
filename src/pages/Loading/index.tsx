@@ -8,6 +8,12 @@ interface Location {
   memberName: string;
 }
 
+function shuffleCards(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const memberBTS = ["v", "jimin", "jungkook", "rm", "jhope", "suga", "jin"];
+const memberBP = new Set(["jisoo", "lisa", "jennie", "rose"]);
 const Container = styled("div")`
   height: 100vh;
   display: flex;
@@ -75,7 +81,11 @@ const LoadingImg = styled("img")`
 export const Loading: React.FC = () => {
   const history = useHistory();
   const location = useLocation<Location>();
-  const memberName = location.state ? location.state.memberName : null;
+  const memberName = location.state
+    ? memberBP.has(location.state.memberName)
+      ? memberBTS[shuffleCards(0, 6)]
+      : location.state.memberName
+    : null;
   useEffect(() => {
     setTimeout(() => {
       if (memberName) {
