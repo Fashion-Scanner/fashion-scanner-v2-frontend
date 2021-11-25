@@ -49,8 +49,7 @@ export const Main: React.FC = () => {
         <div
           className="container"
           style={{
-            background:
-              "#c4c4c426 center / contain no-repeat url('https://media.giphy.com/media/26BRyql7J3iOx875u/giphy.gif')",
+            background: "#c4c4c426",
             height: "100vh",
             display: "flex",
             justifyContent: "space-between",
