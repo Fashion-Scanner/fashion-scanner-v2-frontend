@@ -47,7 +47,6 @@ const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
     axios
       .get(`https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=${memberName.toLowerCase()}`)
       .then((res) => {
-        console.log(res.data.data);
         setKoClothes(res.data.data.ko.clothes);
         setEnClothes(res.data.data.en.clothes);
       });
