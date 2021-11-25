@@ -8,7 +8,7 @@ interface LookBookHeaderProps {
 const LookBookHeader: React.FC<LookBookHeaderProps> = ({ memberName }) => {
   return (
     <HeaderContainer>
-      <img alt="lookbook-header-jhope" src={`/images/Lookbook/LookbookHeader/${memberName}.png`} />
+      <img alt={memberName} src={`/images/Lookbook/LookbookHeader/${memberName.toUpperCase()}.png`} />
     </HeaderContainer>
   );
 };
