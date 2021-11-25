@@ -209,7 +209,7 @@ const ColorChip = styled.div`
   width: 18px;
   height: 18px;
   margin-left: 2px;
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => "#" + props.color};
 `;
 
 const SwiperNav = styled.div`
