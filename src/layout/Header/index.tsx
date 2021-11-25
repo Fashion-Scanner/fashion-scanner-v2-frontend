@@ -7,11 +7,7 @@ const subNav = {
   main: [
     {
       id: 0,
-      component: (
-        <NavLink activeStyle={{ color: "inherit", textShadow: "#464646 1px 1px 1px" }} to="/blackpink" exact>
-          BLACKPINK
-        </NavLink>
-      ),
+      component: <a href="https://www.fashion-scanner.site/blackpink/">BLACKPINK</a>,
     },
     {
       id: 1,
