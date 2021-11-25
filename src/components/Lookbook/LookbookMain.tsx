@@ -102,7 +102,7 @@ const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
               <Content>상의</Content>
               <Label>COLOR</Label>
               <Content>
-                <ColorChip color="black" />
+                <ColorChip color="000000" />
               </Content>
               <Label>FEATURES</Label>
               <Content>반팔, 하프넥, 스트라이프 패턴</Content>
