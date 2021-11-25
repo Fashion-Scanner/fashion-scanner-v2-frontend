@@ -18,6 +18,7 @@ interface ICardContent {
   category_name: string;
   price: string;
   image: string;
+  color: string;
 }
 
 interface LookBookHeaderProps {
@@ -46,15 +47,16 @@ const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
     category_name: "",
     price: "",
     image: "",
+    color: "",
   });
-  const MemberPhotoUrl = (id: number) => `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${id}.png`;
+  const MemberPhotoUrl = (id: number) =>
+    `/images/Lookbook/LookbookMain/${memberName}/${memberName.toLowerCase()}_${id}.png`;
   const MemberClothUrl = `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${currentCardId}_1.png`;
 
   useEffect(() => {
     console.log(memberName);
-    axios.get(`https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=v`).then((res) => {
+    axios.get(`https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=${memberName}`).then((res) => {
       console.log(res.data.data);
-      console.log(res.data.data.ko);
       setKoClothes(res.data.data.ko.clothes);
       setEnClothes(res.data.data.en.clothes);
     });
@@ -95,7 +97,7 @@ const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
               <Content>{currentCardData.category_name}</Content>
               <Label>COLOR</Label>
               <Content>
-                <ColorChip color="black" />
+                <ColorChip color={currentCardData.color} />
               </Content>
               <Label>FEATURES</Label>
               <Content>{currentCardData.attributes.join(", ")}</Content>
