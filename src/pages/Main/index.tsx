@@ -166,7 +166,13 @@ export const Main: React.FC = () => {
               BTS
             </Badge>
           </div>
-          <ImgLink onClick={() => history.push(`/${cardImg}`)}>
+          <ImgLink
+            onClick={() =>
+              cardImg === "bts"
+                ? history.push(`/${cardImg}`)
+                : (window.location.href = "https://www.fashion-scanner.site/blackpink/")
+            }
+          >
             <div className="floatText">
               <span>
                 <Trans i18nKey="shortcut" /> <FaArrowRight />
