@@ -25,16 +25,6 @@ interface LookBookHeaderProps {
   memberName: string;
 }
 
-// const memberNameDict = {
-//   jungkook: "정국",
-//   jhope: "제이홉",
-//   jimin: "지민",
-//   jin: "진",
-//   rm: "알엠",
-//   v: "뷔",
-//   suga: "슈가",
-// };
-
 const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
@@ -54,12 +44,13 @@ const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
   const MemberClothUrl = `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${currentCardId}_1.png`;
 
   useEffect(() => {
-    console.log(memberName);
-    axios.get(`https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=${memberName}`).then((res) => {
-      console.log(res.data.data);
-      setKoClothes(res.data.data.ko.clothes);
-      setEnClothes(res.data.data.en.clothes);
-    });
+    axios
+      .get(`https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=${memberName.toLowerCase()}`)
+      .then((res) => {
+        // console.log(res.data.data);
+        setKoClothes(res.data.data.ko.clothes);
+        setEnClothes(res.data.data.en.clothes);
+      });
     setCurrentCardId(1);
   }, [memberName]);
 
@@ -109,7 +100,7 @@ const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
               <Label>BRAND</Label>
               <Content>구찌</Content>
               <Label>CATEGORY</Label>
-              <Content>tq</Content>
+              <Content>상의</Content>
               <Label>COLOR</Label>
               <Content>
                 <ColorChip color="black" />
