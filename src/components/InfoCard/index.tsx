@@ -142,7 +142,6 @@ export const InfoCard: React.FC<InfoCardProps> = ({ isClicked, memberName }) => 
 
   return (
     <Container>
-      {console.log(<Trans i18nKey="result:btn1" />)}
       <span>
         <Trans i18nKey={`result:info.${memberName}.t1`} />
       </span>
