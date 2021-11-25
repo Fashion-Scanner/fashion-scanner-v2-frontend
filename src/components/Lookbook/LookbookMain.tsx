@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 interface IBar {
   top: string;
@@ -11,23 +12,55 @@ interface INavCard {
   url: string;
 }
 
+interface ICardContent {
+  brand: string;
+  attributes: string[];
+  category_name: string;
+  price: string;
+  image: string;
+  color: string;
+}
+
 interface LookBookHeaderProps {
   memberName: string;
 }
 
 const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
   const [koClothes, setKoClothes] = useState([]);
   const [enClothes, setEnClothes] = useState([]);
   const [currentCardId, setCurrentCardId] = useState<number>(1);
-  const MemberPhotoUrl = (id: number) => `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${id}.png`;
+  const [currentCardData, setCurrentCardData] = useState<ICardContent>({
+    brand: "",
+    attributes: [],
+    category_name: "",
+    price: "",
+    image: "",
+    color: "",
+  });
+  const MemberPhotoUrl = (id: number) =>
+    `/images/Lookbook/LookbookMain/${memberName}/${memberName.toLowerCase()}_${id}.png`;
   const MemberClothUrl = `/images/Lookbook/LookbookMain/${memberName}/${memberName}_${currentCardId}_1.png`;
 
   useEffect(() => {
-    axios.get("https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=v").then((res) => {
-      setKoClothes(res.data.ko.clothes);
-      setEnClothes(res.data.en.clothes);
-    });
-  }, []);
+    axios
+      .get(`https://kpop.fashion-scanner.site:8000/api/v1/member/info/?en_name=${memberName.toLowerCase()}`)
+      .then((res) => {
+        // console.log(res.data.data);
+        setKoClothes(res.data.data.ko.clothes);
+        setEnClothes(res.data.data.en.clothes);
+      });
+    setCurrentCardId(1);
+  }, [memberName]);
+
+  useEffect(() => {
+    if (currentLanguage === "en") {
+      setCurrentCardData(enClothes[currentCardId - 1]);
+    } else {
+      setCurrentCardData(koClothes[currentCardId - 1]);
+    }
+  }, [currentCardId]);
 
   const onClickLeftArrow = () => {
     setCurrentCardId((prev) => (prev > 1 ? prev - 1 : prev - 1 + 8));
@@ -47,22 +80,37 @@ const LookBookMain: React.FC<LookBookHeaderProps> = ({ memberName }) => {
       <SwiperCard>
         <Arrow alt="left_arrow" src="/images/Lookbook/left_arrow.png" onClick={onClickLeftArrow} />
         <LookBookContent>
-          <ContentTable>
-            {koClothes.map(() => null)}
-            {enClothes.map(() => null)}
-            <Label>BRAND</Label>
-            <Content>구찌</Content>
-            <Label>CATEGORY</Label>
-            <Content>상의</Content>
-            <Label>COLOR</Label>
-            <Content>
-              <ColorChip color="black" />
-            </Content>
-            <Label>FEATURES</Label>
-            <Content>반팔, 하프넥, 스트라이프 패턴</Content>
-            <Label>PRICE</Label>
-            <Content>KRW 3,000,000</Content>
-          </ContentTable>
+          {currentCardData?.brand ? (
+            <ContentTable>
+              <Label>BRAND</Label>
+              <Content>{currentCardData.brand}</Content>
+              <Label>CATEGORY</Label>
+              <Content>{currentCardData.category_name}</Content>
+              <Label>COLOR</Label>
+              <Content>
+                <ColorChip color={currentCardData.color} />
+              </Content>
+              <Label>FEATURES</Label>
+              <Content>{currentCardData.attributes.join(", ")}</Content>
+              <Label>PRICE</Label>
+              <Content>{currentCardData.price}</Content>
+            </ContentTable>
+          ) : (
+            <ContentTable>
+              <Label>BRAND</Label>
+              <Content>구찌</Content>
+              <Label>CATEGORY</Label>
+              <Content>상의</Content>
+              <Label>COLOR</Label>
+              <Content>
+                <ColorChip color="black" />
+              </Content>
+              <Label>FEATURES</Label>
+              <Content>반팔, 하프넥, 스트라이프 패턴</Content>
+              <Label>PRICE</Label>
+              <Content>KRW 3,000,000</Content>
+            </ContentTable>
+          )}
           <Bar top="600px" bottom="" />
           <MemberPhoto alt="lookbook" src={MemberPhotoUrl(currentCardId)} />
           <MemberCloth alt="lookbook" src={MemberClothUrl} />
